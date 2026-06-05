@@ -16,7 +16,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-secondary text-foreground hover:bg-accent transition-colors border border-border"
+      className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-secondary text-foreground hover:bg-accent transition-colors border border-border hover:cursor-pointer"
       aria-label="Toggle theme"
     >
       <motion.div
