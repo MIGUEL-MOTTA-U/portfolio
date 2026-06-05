@@ -32,7 +32,7 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#040408] border-t border-white/[0.06]">
+    <footer className="relative bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand column */}
@@ -41,13 +41,13 @@ export function Footer() {
               <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
                 <Terminal className="w-4 h-4 text-indigo-400" />
               </div>
-              <span className="font-mono font-bold text-white tracking-tight">
+              <span className="font-mono font-bold text-foreground tracking-tight">
                 <span className="text-indigo-400">{"<"}</span>
                 dev<span className="text-cyan-400">elite</span>
                 <span className="text-indigo-400">{" />"}</span>
               </span>
             </a>
-            <p className="text-slate-600 text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mb-6">
               Ingeniería de software de nivel enterprise. Arquitectura, escalabilidad e innovación
               para empresas que quieren crecer sin límites técnicos.
             </p>
@@ -59,7 +59,7 @@ export function Footer() {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.07] flex items-center justify-center text-slate-600 hover:text-white hover:border-white/[0.14] transition-all"
+                    className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
                   >
                     <Icon className="w-3.5 h-3.5" />
                   </a>
@@ -71,7 +71,7 @@ export function Footer() {
           {/* Links columns */}
           {Object.entries(links).map(([category, items]) => (
             <div key={category}>
-              <div className="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-4">
+              <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
                 {category}
               </div>
               <ul className="space-y-2.5">
@@ -79,7 +79,7 @@ export function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="text-sm text-slate-600 hover:text-slate-300 transition-colors"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {item.label}
                     </a>
@@ -91,11 +91,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-slate-700">
+        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-muted-foreground/60">
             © 2024 DevElite. Todos los derechos reservados.
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-slate-700">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60">
             <span>Construido con</span>
             <span className="font-mono text-indigo-500">React</span>
             <span>·</span>
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
           <a
             href="#"
-            className="flex items-center gap-1 text-xs text-slate-700 hover:text-slate-400 transition-colors"
+            className="flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-foreground transition-colors"
           >
             Volver arriba
             <ArrowUpRight className="w-3 h-3" />

@@ -11,7 +11,7 @@ import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#00000] text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen">
       <Navbar />
       <Hero />
       <Services />

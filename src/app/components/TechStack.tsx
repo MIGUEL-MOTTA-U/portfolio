@@ -30,14 +30,14 @@ function CategoryCard({ cat, index }: { cat: typeof categories[0]; index: number
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.12] transition-all"
+      className="p-5 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-all"
     >
-      <div className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">{cat.name}</div>
+      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">{cat.name}</div>
       <div className="flex flex-wrap gap-2">
         {cat.techs.map((tech) => (
           <span
             key={tech}
-            className="px-2.5 py-1 text-xs font-mono text-slate-300 bg-white/[0.05] border border-white/[0.06] rounded-lg hover:text-white hover:border-indigo-500/30 transition-all cursor-default"
+            className="px-2.5 py-1 text-xs font-mono text-muted-foreground bg-card border border-border rounded-lg hover:text-foreground hover:border-indigo-500/30 transition-all cursor-default"
           >
             {tech}
           </span>
@@ -58,10 +58,10 @@ function ProficiencyBar({ item, index }: { item: typeof proficiency[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.07 }}
     >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm text-slate-300 font-medium">{item.label}</span>
-        <span className="text-xs font-mono text-slate-500">{item.pct}%</span>
+        <span className="text-sm text-muted-foreground font-medium">{item.label}</span>
+        <span className="text-xs font-mono text-muted-foreground">{item.pct}%</span>
       </div>
-      <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
         <motion.div
           className="h-full rounded-full"
           style={{ background: "linear-gradient(90deg, #6366f1, #22d3ee)" }}
@@ -79,7 +79,7 @@ export function TechStack() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="stack" className="relative py-32 bg-[#060611]">
+    <section id="stack" className="relative py-32 bg-background">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full opacity-10"
@@ -99,7 +99,7 @@ export function TechStack() {
             Stack Tecnológico
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Tecnologías que{" "}
@@ -114,7 +114,7 @@ export function TechStack() {
               domino
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
             Un stack moderno y probado en producción, elegido por rendimiento, mantenibilidad y escala.
           </p>
         </motion.div>
@@ -126,7 +126,7 @@ export function TechStack() {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <h3 className="text-slate-400 text-sm font-semibold uppercase tracking-widest text-center mb-10">
+          <h3 className="text-muted-foreground text-sm font-semibold uppercase tracking-widest text-center mb-10">
             Nivel de dominio por área
           </h3>
           <div className="space-y-6">

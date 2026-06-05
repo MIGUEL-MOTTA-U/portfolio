@@ -78,17 +78,17 @@ function TestimonialCard({ t, index }: { t: typeof testimonials[0]; index: numbe
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-white/[0.12] transition-all"
+      className="relative p-6 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-all"
     >
       <Quote className="w-5 h-5 text-indigo-500/40 mb-4" />
-      <p className="text-slate-400 text-sm leading-relaxed mb-6">"{t.text}"</p>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xs font-bold ${avatarColorMap[t.color]}`}>
             {t.avatar}
           </div>
           <div>
-            <div className="text-white font-semibold text-sm">{t.name}</div>
+            <div className="text-foreground font-semibold text-sm">{t.name}</div>
             <div className="text-slate-600 text-xs">{t.role} · {t.company}</div>
           </div>
         </div>
@@ -107,7 +107,7 @@ export function Testimonials() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-32 bg-[#060611] overflow-hidden">
+    <section className="relative py-32 bg-background overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full opacity-[0.04]"
@@ -127,7 +127,7 @@ export function Testimonials() {
             Testimonios
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Lo que dicen los{" "}
@@ -142,7 +142,7 @@ export function Testimonials() {
               clientes
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
             Resultados reales en empresas reales. La confianza se construye entregando lo prometido.
           </p>
         </motion.div>
@@ -158,7 +158,7 @@ export function Testimonials() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 py-8 px-8 rounded-2xl border border-white/[0.06] bg-white/[0.02]"
+          className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 py-8 px-8 rounded-2xl border border-border bg-card"
         >
           {[
             { value: "100%", label: "Proyectos entregados a tiempo" },
@@ -166,7 +166,7 @@ export function Testimonials() {
             { value: "90%", label: "Clientes con proyectos adicionales" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="font-bold text-white mb-1" style={{ fontSize: "1.75rem" }}>
+              <div className="font-bold text-foreground mb-1" style={{ fontSize: "1.75rem" }}>
                 {stat.value}
               </div>
               <div className="text-sm text-slate-600">{stat.label}</div>

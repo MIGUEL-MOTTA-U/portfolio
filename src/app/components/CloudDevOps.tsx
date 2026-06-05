@@ -14,7 +14,7 @@ const cloudServices = [
 ];
 
 const pipelineSteps = [
-  { label: "Code Push", icon: GitBranch, color: "text-slate-400" },
+  { label: "Code Push", icon: GitBranch, color: "text-muted-foreground" },
   { label: "Unit Tests", icon: CheckCircle2, color: "text-emerald-400" },
   { label: "Build & Lint", icon: Package, color: "text-blue-400" },
   { label: "Security Scan", icon: Lock, color: "text-amber-400" },
@@ -51,10 +51,10 @@ function FeatureCard({ feat, index }: { feat: typeof features[0]; index: number 
       initial={{ opacity: 0, x: 20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:border-cyan-500/20 transition-all"
+      className="p-5 rounded-2xl bg-card border border-border hover:border-cyan-500/20 transition-all"
     >
-      <h3 className="text-white font-semibold mb-2 text-sm">{feat.title}</h3>
-      <p className="text-slate-500 text-sm leading-relaxed">{feat.description}</p>
+      <h3 className="text-foreground font-semibold mb-2 text-sm">{feat.title}</h3>
+      <p className="text-muted-foreground text-sm leading-relaxed">{feat.description}</p>
     </motion.div>
   );
 }
@@ -64,7 +64,7 @@ export function CloudDevOps() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-32 bg-[#060611] overflow-hidden">
+    <section className="relative py-32 bg-background overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
@@ -84,7 +84,7 @@ export function CloudDevOps() {
             Cloud & DevOps
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Infraestructura que{" "}
@@ -99,7 +99,7 @@ export function CloudDevOps() {
               nunca falla
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
             Cloud-native desde el diseño. Arquitecturas que escalan automáticamente,
             se despliegan sin interrupciones y se monitorizan en tiempo real.
           </p>
@@ -126,10 +126,10 @@ export function CloudDevOps() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={inView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ duration: 0.4, delay: 0.2 + i * 0.07 }}
-                        className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.07]"
+                        className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-card border border-border"
                       >
                         <Icon className={`w-3.5 h-3.5 ${step.color}`} />
-                        <span className="text-xs text-slate-400 font-medium">{step.label}</span>
+                        <span className="text-xs text-muted-foreground font-medium">{step.label}</span>
                       </motion.div>
                       {i < pipelineSteps.length - 1 && (
                         <span className="text-slate-700 text-xs">→</span>
@@ -155,10 +155,10 @@ export function CloudDevOps() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
-                    className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-cyan-500/20 hover:bg-cyan-500/[0.03] transition-all text-center cursor-default"
+                    className="p-3 rounded-xl bg-card border border-border hover:border-cyan-500/20 hover:bg-cyan-500/[0.03] transition-all text-center cursor-default"
                   >
                     <div className="text-lg mb-1.5">{svc.icon}</div>
-                    <div className="text-xs text-slate-300 font-medium leading-tight">{svc.name}</div>
+                    <div className="text-xs text-muted-foreground font-medium leading-tight">{svc.name}</div>
                     <div className="text-xs text-slate-600 mt-0.5">{svc.category}</div>
                   </motion.div>
                 ))}
@@ -179,12 +179,12 @@ export function CloudDevOps() {
               className="p-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.04]"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-slate-300">System Uptime</span>
+                <span className="text-sm font-semibold text-muted-foreground">System Uptime</span>
                 <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
                   LIVE
                 </span>
               </div>
-              <div className="font-bold text-white mb-1" style={{ fontSize: "2.5rem", lineHeight: 1 }}>
+              <div className="font-bold text-foreground mb-1" style={{ fontSize: "2.5rem", lineHeight: 1 }}>
                 99.97%
               </div>
               <div className="text-xs text-slate-600 mb-3">Promedio en proyectos de producción</div>

@@ -15,7 +15,7 @@ const techBadges = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#060611]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
       {/* Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -65,7 +65,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1
-              className="text-white leading-[1.06] tracking-tight mb-6 font-bold"
+              className="text-foreground leading-[1.06] tracking-tight mb-6 font-bold"
               style={{ fontSize: "clamp(2.8rem, 6.5vw, 5rem)" }}
             >
               Arquitectura.{" "}
@@ -89,7 +89,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-slate-400 max-w-2xl mb-10 leading-relaxed"
+            className="text-muted-foreground max-w-2xl mb-10 leading-relaxed"
             style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}
           >
             Desarrollo soluciones de software empresarial — desde microservicios cloud-native hasta agentes
@@ -112,7 +112,7 @@ export function Hero() {
             </a>
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-1.5 px-6 py-3 text-slate-300 hover:text-white border border-white/10 hover:border-white/20 rounded-xl transition-all duration-200 bg-white/[0.03] hover:bg-white/[0.06] font-medium text-sm"
+              className="inline-flex items-center justify-center gap-1.5 px-6 py-3 text-muted-foreground hover:text-foreground border border-border hover:border-foreground/20 rounded-xl transition-all duration-200 bg-card hover:bg-accent font-medium text-sm"
             >
               Ver Casos de Éxito
               <ChevronRight className="w-4 h-4" />
@@ -132,7 +132,7 @@ export function Hero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.55 + i * 0.04 }}
-                className="px-3 py-1 text-xs font-mono text-slate-400 bg-white/[0.04] border border-white/[0.07] rounded-full hover:text-slate-200 hover:border-indigo-500/30 transition-all cursor-default"
+                className="px-3 py-1 text-xs font-mono text-muted-foreground bg-card border border-border rounded-full hover:text-foreground hover:border-indigo-500/30 transition-all cursor-default"
               >
                 {tech}
               </motion.span>
@@ -144,7 +144,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t border-white/[0.06]"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-10 border-t border-border"
           >
             {metrics.map((m, i) => (
               <motion.div
@@ -154,12 +154,12 @@ export function Hero() {
                 transition={{ duration: 0.4, delay: 0.7 + i * 0.08 }}
               >
                 <div
-                  className="font-bold text-white mb-1"
+                  className="font-bold text-foreground mb-1"
                   style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)" }}
                 >
                   {m.value}
                 </div>
-                <div className="text-sm text-slate-500">{m.label}</div>
+                <div className="text-sm text-muted-foreground">{m.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -167,7 +167,7 @@ export function Hero() {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060611] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }

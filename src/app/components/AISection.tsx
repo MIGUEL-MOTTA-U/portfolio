@@ -54,14 +54,14 @@ function CapabilityItem({ cap, index }: { cap: typeof capabilities[0]; index: nu
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="flex gap-4 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-all group"
+      className="flex gap-4 p-4 rounded-xl bg-card border border-border hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-all group"
     >
       <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 group-hover:bg-violet-500/20 transition-all">
         <Icon className="w-4 h-4 text-violet-400" />
       </div>
       <div>
-        <div className="text-white font-semibold text-sm mb-1">{cap.title}</div>
-        <p className="text-slate-500 text-sm leading-relaxed">{cap.description}</p>
+        <div className="text-foreground font-semibold text-sm mb-1">{cap.title}</div>
+        <p className="text-muted-foreground text-sm leading-relaxed">{cap.description}</p>
       </div>
     </motion.div>
   );
@@ -72,7 +72,7 @@ export function AISection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="ai" className="relative py-32 bg-[#060611] overflow-hidden">
+    <section id="ai" className="relative py-32 bg-background overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full opacity-[0.08]"
@@ -96,7 +96,7 @@ export function AISection() {
             Inteligencia Artificial
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             IA que trabaja{" "}
@@ -111,7 +111,7 @@ export function AISection() {
               para tu negocio
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
             No solo integro IA — diseño arquitecturas que hacen que la inteligencia artificial sea
             un activo estratégico real, no un experimento.
           </p>
@@ -131,25 +131,25 @@ export function AISection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="rounded-2xl bg-[#0d0d1a] border border-white/[0.08] overflow-hidden"
+              className="rounded-2xl bg-card border border-border overflow-hidden"
             >
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06]">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
                 <div className="w-3 h-3 rounded-full bg-rose-500/60" />
                 <div className="w-3 h-3 rounded-full bg-amber-500/60" />
                 <div className="w-3 h-3 rounded-full bg-emerald-500/60" />
                 <span className="text-xs text-slate-600 font-mono ml-2">ai-agent.py</span>
               </div>
               <div className="p-5 font-mono text-sm space-y-1.5">
-                <div><span className="text-slate-600"># </span><span className="text-slate-500">Inicializando agente empresarial...</span></div>
-                <div><span className="text-violet-400">agent</span><span className="text-slate-400"> = </span><span className="text-cyan-400">AgentExecutor</span><span className="text-slate-400">(</span></div>
-                <div className="pl-4"><span className="text-slate-400">llm=</span><span className="text-emerald-400">ChatOpenAI</span><span className="text-slate-400">(model="gpt-4o"),</span></div>
-                <div className="pl-4"><span className="text-slate-400">tools=</span><span className="text-amber-400">[db_tool, api_tool, report_tool]</span><span className="text-slate-400">,</span></div>
-                <div className="pl-4"><span className="text-slate-400">memory=</span><span className="text-indigo-400">ConversationBufferMemory</span><span className="text-slate-400">()</span></div>
-                <div><span className="text-slate-400">)</span></div>
-                <div className="mt-2"><span className="text-slate-600"># </span><span className="text-slate-500">Resultado: 3,200h/mes ahorradas ✓</span></div>
+                <div><span className="text-slate-600"># </span><span className="text-muted-foreground">Inicializando agente empresarial...</span></div>
+                <div><span className="text-violet-400">agent</span><span className="text-muted-foreground"> = </span><span className="text-cyan-400">AgentExecutor</span><span className="text-muted-foreground">(</span></div>
+                <div className="pl-4"><span className="text-muted-foreground">llm=</span><span className="text-emerald-400">ChatOpenAI</span><span className="text-muted-foreground">(model="gpt-4o"),</span></div>
+                <div className="pl-4"><span className="text-muted-foreground">tools=</span><span className="text-amber-400">[db_tool, api_tool, report_tool]</span><span className="text-muted-foreground">,</span></div>
+                <div className="pl-4"><span className="text-muted-foreground">memory=</span><span className="text-indigo-400">ConversationBufferMemory</span><span className="text-muted-foreground">()</span></div>
+                <div><span className="text-muted-foreground">)</span></div>
+                <div className="mt-2"><span className="text-slate-600"># </span><span className="text-muted-foreground">Resultado: 3,200h/mes ahorradas ✓</span></div>
                 <div className="flex items-center gap-2">
                   <span className="text-emerald-400">✓</span>
-                  <span className="text-slate-400">Agent deployed to production</span>
+                  <span className="text-muted-foreground">Agent deployed to production</span>
                   <span className="inline-block w-2 h-4 bg-white/60 animate-pulse" />
                 </div>
               </div>
@@ -167,9 +167,9 @@ export function AISection() {
                 {useCases.map((uc, i) => (
                   <div
                     key={i}
-                    className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-violet-500/20 transition-all"
+                    className="p-3.5 rounded-xl bg-card border border-border hover:border-violet-500/20 transition-all"
                   >
-                    <div className="text-xs text-slate-400 mb-1 font-medium">{uc.label}</div>
+                    <div className="text-xs text-muted-foreground mb-1 font-medium">{uc.label}</div>
                     <div className="text-xs font-mono font-semibold text-violet-400">{uc.value}</div>
                   </div>
                 ))}

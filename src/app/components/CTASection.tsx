@@ -66,7 +66,7 @@ export function CTASection() {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-[#060611] overflow-hidden">
+    <section id="contact" className="relative py-32 bg-background overflow-hidden">
       {/* Big glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -95,7 +95,7 @@ export function CTASection() {
             Trabajemos Juntos
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
           >
             ¿Listo para construir{" "}
@@ -111,7 +111,7 @@ export function CTASection() {
               algo extraordinario?
             </span>
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-xl mx-auto text-base">
             Cuéntame tu desafío técnico. Respondemos en menos de 24 horas con una propuesta concreta.
           </p>
         </motion.div>
@@ -132,13 +132,13 @@ export function CTASection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                className={`p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] ${colors.border} transition-all text-center`}
+                className={`p-6 rounded-2xl bg-card border border-border ${colors.border} transition-all text-center`}
               >
                 <div className={`w-12 h-12 rounded-xl ${colors.icon} border flex items-center justify-center mx-auto mb-4`}>
                   <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-white font-semibold mb-2">{opt.title}</h3>
-                <p className="text-slate-500 text-sm mb-5">{opt.description}</p>
+                <h3 className="text-foreground font-semibold mb-2">{opt.title}</h3>
+                <p className="text-muted-foreground text-sm mb-5">{opt.description}</p>
                 <a
                   href="mailto:contact@develite.dev"
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white ${colors.btn} shadow-lg transition-all`}
@@ -158,8 +158,8 @@ export function CTASection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-2xl mx-auto"
         >
-          <div className="p-8 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
-            <h3 className="text-white font-bold text-xl mb-6">Cuéntame sobre tu proyecto</h3>
+          <div className="p-8 rounded-2xl bg-card border border-border">
+            <h3 className="text-foreground font-bold text-xl mb-6">Cuéntame sobre tu proyecto</h3>
             {sent ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -167,8 +167,8 @@ export function CTASection() {
                 className="py-12 text-center"
               >
                 <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-                <h4 className="text-white font-semibold text-lg mb-2">¡Mensaje enviado!</h4>
-                <p className="text-slate-500 text-sm">Te respondo en menos de 24 horas.</p>
+                <h4 className="text-foreground font-semibold text-lg mb-2">¡Mensaje enviado!</h4>
+                <p className="text-muted-foreground text-sm">Te respondo en menos de 24 horas.</p>
                 <button
                   onClick={() => setSent(false)}
                   className="mt-6 text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
@@ -180,7 +180,7 @@ export function CTASection() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
                       Nombre
                     </label>
                     <input
@@ -189,11 +189,11 @@ export function CTASection() {
                       onChange={(e) => setName(e.target.value)}
                       required
                       placeholder="Tu nombre"
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all"
+                      className="w-full px-4 py-2.5 bg-card border border-border rounded-xl text-foreground placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                    <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
                       Email
                     </label>
                     <input
@@ -202,12 +202,12 @@ export function CTASection() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       placeholder="tu@empresa.com"
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all"
+                      className="w-full px-4 py-2.5 bg-card border border-border rounded-xl text-foreground placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+                  <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
                     Tu proyecto o desafío
                   </label>
                   <textarea
@@ -216,7 +216,7 @@ export function CTASection() {
                     required
                     rows={5}
                     placeholder="Describe brevemente qué necesitas construir, el contexto y el timeline aproximado..."
-                    className="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all resize-none"
+                    className="w-full px-4 py-3 bg-card border border-border rounded-xl text-foreground placeholder-slate-700 text-sm focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/[0.03] transition-all resize-none"
                   />
                 </div>
                 <button

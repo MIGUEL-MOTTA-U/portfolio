@@ -95,7 +95,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/[0.14] transition-all duration-500 overflow-hidden"
+      className="group relative rounded-2xl border border-border bg-card hover:border-foreground/20 transition-all duration-500 overflow-hidden"
     >
       {/* Gradient top bar */}
       <div className={`absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r ${project.gradient.replace('/20', '/60').replace('/10', '/30')}`} />
@@ -106,10 +106,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div className="relative p-7">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-slate-600 mb-2 block">
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2 block">
               {project.category}
             </span>
-            <h3 className="text-white font-bold text-lg leading-snug">{project.title}</h3>
+            <h3 className="text-foreground font-bold text-lg leading-snug">{project.title}</h3>
           </div>
           <span className={`px-2.5 py-1 text-xs font-semibold rounded-full border ${tagColorMap[project.tagColor]} shrink-0 ml-4`}>
             {project.tag}
@@ -118,12 +118,12 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
         <div className="space-y-4 mb-6">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-600 mb-1.5">Problema</div>
-            <p className="text-sm text-slate-400 leading-relaxed">{project.problem}</p>
+            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Problema</div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{project.problem}</p>
           </div>
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-600 mb-1.5">Solución</div>
-            <p className="text-sm text-slate-400 leading-relaxed">{project.solution}</p>
+            <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Solución</div>
+            <p className="text-sm text-muted-foreground leading-relaxed">{project.solution}</p>
           </div>
           {expanded && (
             <motion.div
@@ -131,8 +131,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
               animate={{ opacity: 1, height: "auto" }}
               transition={{ duration: 0.3 }}
             >
-              <div className="text-xs font-semibold uppercase tracking-wide text-slate-600 mb-1.5">Arquitectura</div>
-              <p className="text-sm font-mono text-slate-500 leading-relaxed">{project.architecture}</p>
+              <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Arquitectura</div>
+              <p className="text-sm font-mono text-muted-foreground leading-relaxed">{project.architecture}</p>
             </motion.div>
           )}
         </div>
@@ -140,23 +140,23 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         {/* Tech stack */}
         <div className="flex flex-wrap gap-1.5 mb-6">
           {project.stack.map((tech) => (
-            <span key={tech} className="px-2 py-0.5 text-xs font-mono text-slate-500 bg-white/[0.04] border border-white/[0.06] rounded">
+            <span key={tech} className="px-2 py-0.5 text-xs font-mono text-muted-foreground bg-card border border-border rounded">
               {tech}
             </span>
           ))}
         </div>
 
         {/* Metrics */}
-        <div className="grid grid-cols-3 gap-3 pt-5 border-t border-white/[0.06]">
+        <div className="grid grid-cols-3 gap-3 pt-5 border-t border-border">
           {project.metrics.map((m, i) => {
             const Icon = m.icon;
             return (
               <div key={i} className="text-center">
                 <div className="flex justify-center mb-1">
-                  <Icon className="w-3.5 h-3.5 text-slate-600" />
+                  <Icon className="w-3.5 h-3.5 text-muted-foreground" />
                 </div>
-                <div className="text-white font-bold text-lg leading-none mb-1">{m.value}</div>
-                <div className="text-slate-600 text-xs leading-tight">{m.label}</div>
+                <div className="text-foreground font-bold text-lg leading-none mb-1">{m.value}</div>
+                <div className="text-muted-foreground text-xs leading-tight">{m.label}</div>
               </div>
             );
           })}
@@ -164,7 +164,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-5 flex items-center gap-1.5 text-sm text-slate-500 hover:text-indigo-400 transition-colors font-medium"
+          className="mt-5 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-indigo-400 transition-colors font-medium"
         >
           {expanded ? "Ver menos" : "Ver arquitectura"}
           <ArrowRight className={`w-3.5 h-3.5 transition-transform ${expanded ? "rotate-90" : ""}`} />
@@ -179,7 +179,7 @@ export function Projects() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" className="relative py-32 bg-[#060611]">
+    <section id="projects" className="relative py-32 bg-background">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-1/3 left-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
@@ -198,7 +198,7 @@ export function Projects() {
             Casos de Éxito
           </span>
           <h2
-            className="text-white font-bold mb-4"
+            className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Proyectos que{" "}
@@ -213,7 +213,7 @@ export function Projects() {
               generaron impacto
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
             Soluciones reales, con arquitecturas reales, midiendo resultados de negocio concretos.
           </p>
         </motion.div>

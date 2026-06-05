@@ -102,18 +102,18 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] ${colors.glow} hover:shadow-xl transition-all duration-300 cursor-default`}
+      className={`group relative p-6 rounded-2xl bg-card border border-border ${colors.glow} hover:shadow-xl transition-all duration-300 cursor-default`}
     >
       <div className={`w-10 h-10 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center mb-5`}>
         <Icon className={`w-5 h-5 ${colors.text}`} />
       </div>
-      <h3 className="text-white font-semibold mb-2.5 text-base">{service.title}</h3>
-      <p className="text-slate-500 text-sm leading-relaxed mb-5">{service.description}</p>
+      <h3 className="text-foreground font-semibold mb-2.5 text-base">{service.title}</h3>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-5">{service.description}</p>
       <div className="flex flex-wrap gap-1.5">
         {service.tags.map((tag) => (
           <span
             key={tag}
-            className="px-2 py-0.5 text-xs font-mono text-slate-500 bg-white/[0.04] border border-white/[0.06] rounded"
+            className="px-2 py-0.5 text-xs font-mono text-muted-foreground bg-card border border-border rounded"
           >
             {tag}
           </span>
@@ -128,7 +128,7 @@ export function Services() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="relative py-32 bg-[#060611]">
+    <section id="services" className="relative py-32 bg-background">
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
@@ -148,7 +148,7 @@ export function Services() {
             Servicios
           </span>
           <h2
-            className="text-white font-bold mb-4 leading-tight"
+            className="text-foreground font-bold mb-4 leading-tight"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
             Soluciones de ingeniería{" "}
@@ -163,7 +163,7 @@ export function Services() {
               de nivel enterprise
             </span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-base leading-relaxed">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base leading-relaxed">
             Desde la arquitectura inicial hasta el despliegue en producción. Construyo, escalo y mantengo
             soluciones tecnológicas que generan impacto real en el negocio.
           </p>
