@@ -2,18 +2,28 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Terminal } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { profileData } from "../data/profileData";
 
-const navItems = [
-  { label: "Servicios", href: "#services" },
-  { label: "Proyectos", href: "#projects" },
-  { label: "Stack", href: "#stack" },
-  { label: "IA & Cloud", href: "#ai" },
-  { label: "Contacto", href: "#contact" },
+const navItemsRaw = [
+  { label: "Experiencia", href: "#experience", section: "experience" },
+  { label: "Servicios", href: "#services", section: "services" },
+  { label: "Proyectos", href: "#projects", section: "projects" },
+  { label: "Stack", href: "#stack", section: "technical_skills" },
+  { label: "Académico", href: "#academic", section: "education" },
+  { label: "IA", href: "#ai", section: "ai" },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { sections } = profileData;
+
+  const navItems = navItemsRaw.filter((item) => {
+    if (item.section === "ai") return true; // Section without specific visibility in JSON yet
+    if (item.section === "services") return true; // Same
+    // @ts-ignore
+    return sections[item.section]?.visible !== false;
+  });
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -39,8 +49,8 @@ export function Navbar() {
           </div>
           <span className="font-mono font-bold text-foreground tracking-tight">
             <span className="text-indigo-400">{"<"}</span>
+            <span className="text-cyan-400">motta</span>
             dev
-            <span className="text-cyan-400">elite</span>
             <span className="text-indigo-400">{" />"}</span>
           </span>
         </a>
@@ -60,7 +70,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a
-            href="#contact"
+            href="mailto:miguelangelmu2016@gmail.com"
             className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-all duration-200 border border-indigo-500/50 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30"
           >
             Agenda Consulta

@@ -1,27 +1,8 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { profileData } from "../data/profileData";
 
-const categories = [
-  { name: "Lenguajes", techs: ["Java", "Python", "TypeScript", "JavaScript", "SQL", "Bash"] },
-  { name: "Backend", techs: ["Spring Boot", "Spring Cloud", "Node.js", "Express", "FastAPI", "Hibernate"] },
-  { name: "Frontend", techs: ["React", "Next.js", "Tailwind CSS", "Vite", "Redux", "React Query"] },
-  { name: "Cloud & Infra", techs: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Serverless"] },
-  { name: "Bases de Datos", techs: ["PostgreSQL", "MySQL", "Redis", "MongoDB", "Elasticsearch", "DynamoDB"] },
-  { name: "DevOps", techs: ["GitHub Actions", "CI/CD", "Nginx", "Linux", "Prometheus", "Grafana"] },
-  { name: "IA & ML", techs: ["LangChain", "OpenAI API", "LlamaIndex", "RAG", "Embeddings", "Agents"] },
-  { name: "Arquitectura", techs: ["Microservices", "Event-Driven", "CQRS", "DDD", "Clean Arch", "SOLID"] },
-];
-
-const proficiency = [
-  { label: "Backend & APIs", pct: 96 },
-  { label: "Cloud Architecture (AWS/Azure)", pct: 91 },
-  { label: "Full Stack (React + Node/Java)", pct: 89 },
-  { label: "DevOps & CI/CD", pct: 87 },
-  { label: "AI & Automation", pct: 84 },
-  { label: "Ciberseguridad", pct: 80 },
-];
-
-function CategoryCard({ cat, index }: { cat: typeof categories[0]; index: number }) {
+function CategoryCard({ cat, index }: { cat: { domain: string; skills: string[] }; index: number }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   return (
@@ -32,20 +13,29 @@ function CategoryCard({ cat, index }: { cat: typeof categories[0]; index: number
       transition={{ duration: 0.5, delay: index * 0.07 }}
       className="p-5 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-all"
     >
-      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">{cat.name}</div>
+      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">{cat.domain}</div>
       <div className="flex flex-wrap gap-2">
-        {cat.techs.map((tech) => (
+        {cat.skills.map((skill) => (
           <span
-            key={tech}
+            key={skill}
             className="px-2.5 py-1 text-xs font-mono text-muted-foreground bg-card border border-border rounded-lg hover:text-foreground hover:border-indigo-500/30 transition-all cursor-default"
           >
-            {tech}
+            {skill}
           </span>
         ))}
       </div>
     </motion.div>
   );
 }
+
+const proficiency = [
+  { label: "Backend & APIs", pct: 96 },
+  { label: "Cloud Architecture (AWS/Azure)", pct: 91 },
+  { label: "Full Stack (React + Node/Java)", pct: 89 },
+  { label: "DevOps & CI/CD", pct: 87 },
+  { label: "AI & Automation", pct: 84 },
+  { label: "Software Design Patterns", pct: 92 },
+];
 
 function ProficiencyBar({ item, index }: { item: typeof proficiency[0]; index: number }) {
   const ref = useRef(null);
@@ -77,6 +67,10 @@ function ProficiencyBar({ item, index }: { item: typeof proficiency[0]; index: n
 export function TechStack() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { sections } = profileData;
+  const skills = sections.technical_skills;
+
+  if (!skills.visible) return null;
 
   return (
     <section id="stack" className="relative py-32 bg-background">
@@ -96,13 +90,13 @@ export function TechStack() {
           className="text-center mb-16"
         >
           <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-5">
-            Stack Tecnológico
+            Especialidades Técnicas
           </span>
           <h2
             className="text-foreground font-bold mb-4"
             style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
           >
-            Tecnologías que{" "}
+            Habilidades y{" "}
             <span
               style={{
                 background: "linear-gradient(120deg, #22d3ee, #6366f1)",
@@ -111,23 +105,23 @@ export function TechStack() {
                 backgroundClip: "text",
               }}
             >
-              domino
+              Tecnologías
             </span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-            Un stack moderno y probado en producción, elegido por rendimiento, mantenibilidad y escala.
+            Especializado en el desarrollo de sistemas de alto rendimiento y arquitecturas modernas escalables.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
-          {categories.map((cat, i) => (
-            <CategoryCard key={cat.name} cat={cat} index={i} />
+          {skills.groups.map((group, i) => (
+            <CategoryCard key={group.domain} cat={group} index={i} />
           ))}
         </div>
 
         <div className="max-w-3xl mx-auto">
           <h3 className="text-muted-foreground text-sm font-semibold uppercase tracking-widest text-center mb-10">
-            Nivel de dominio por área
+            Nivel de Especialización
           </h3>
           <div className="space-y-6">
             {proficiency.map((item, i) => (

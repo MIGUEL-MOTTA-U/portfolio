@@ -140,7 +140,7 @@ export function CTASection() {
                 <h3 className="text-foreground font-semibold mb-2">{opt.title}</h3>
                 <p className="text-muted-foreground text-sm mb-5">{opt.description}</p>
                 <a
-                  href="mailto:contact@develite.dev"
+                  href="mailto:miguelangelmu2016@gmail.com"
                   className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white ${colors.btn} shadow-lg transition-all`}
                 >
                   {opt.cta}

@@ -1,4 +1,4 @@
-import { Terminal, Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
+import { Terminal, Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
 const links = {
   Servicios: [
@@ -19,15 +19,14 @@ const links = {
     { label: "Agendar Reunión", href: "#contact" },
     { label: "Enviar Proyecto", href: "#contact" },
     { label: "Consultoría Técnica", href: "#contact" },
-    { label: "contact@develite.dev", href: "mailto:contact@develite.dev" },
+    { label: "miguelangelmu2016@gmail.com", href: "mailto:miguelangelmu2016@gmail.com" },
   ],
 };
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Mail, href: "mailto:contact@develite.dev", label: "Email" },
+  { icon: Github, href: "https://github.com/MIGUEL-MOTTA-U/", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/miguelangelmotta-backendengineer/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:miguelangelmu2016@gmail.com", label: "Email" },
 ];
 
 export function Footer() {
@@ -43,7 +42,7 @@ export function Footer() {
               </div>
               <span className="font-mono font-bold text-foreground tracking-tight">
                 <span className="text-indigo-400">{"<"}</span>
-                dev<span className="text-cyan-400">elite</span>
+                <span className="text-cyan-400">motta</span>dev
                 <span className="text-indigo-400">{" />"}</span>
               </span>
             </a>
@@ -57,6 +56,7 @@ export function Footer() {
                 return (
                   <a
                     key={social.label}
+                    target="_blank"
                     href={social.href}
                     aria-label={social.label}
                     className="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all"
@@ -93,7 +93,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-muted-foreground/60">
-            © 2024 DevElite. Todos los derechos reservados.
+            © 2026 MottaDev. Todos los derechos reservados.
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60">
             <span>Construido con</span>

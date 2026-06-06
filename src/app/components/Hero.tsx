@@ -1,19 +1,25 @@
 import { motion } from "motion/react";
 import { ArrowRight, ChevronRight } from "lucide-react";
-
-const metrics = [
-  { value: "50+", label: "Proyectos entregados" },
-  { value: "8+", label: "Años de experiencia" },
-  { value: "99.9%", label: "Uptime garantizado" },
-  { value: "15+", label: "Clientes satisfechos" },
-];
-
-const techBadges = [
-  "AWS", "Docker", "Kubernetes", "React", "Spring Boot",
-  "Python", "TypeScript", "PostgreSQL", "Redis", "GitHub Actions",
-];
+import { profileData } from "../data/profileData";
 
 export function Hero() {
+  const { personal_info, sections } = profileData;
+  const summary = sections.professional_summary;
+
+  if (!summary.visible) return null;
+
+  const metrics = [
+    { value: "50+", label: "Proyectos entregados" },
+    { value: "8+", label: "Años de experiencia" },
+    { value: "99.9%", label: "Uptime garantizado" },
+    { value: "15+", label: "Países" },
+  ];
+
+  const techBadges = [
+    "AWS", "Docker", "Java", "React", "Spring Boot",
+    "Python", "TypeScript", "PostgreSQL", "Redis", "GitHub Actions",
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
       {/* Orbs */}
@@ -68,18 +74,17 @@ export function Hero() {
               className="text-foreground leading-[1.06] tracking-tight mb-6 font-bold"
               style={{ fontSize: "clamp(2.8rem, 6.5vw, 5rem)" }}
             >
-              Arquitectura.{" "}
+              {personal_info.name}.{" "}
               <br className="hidden sm:block" />
-              Escalabilidad.{" "}
               <span
                 style={{
-                  background: "linear-gradient(120deg, #6366f1 0%, #22d3ee 50%, #a78bfa 100%)",
+                  background: "linear-gradient(120deg, #6366f1, #22d3ee, #a78bfa)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                 }}
               >
-                Resultado.
+                Ingeniero de Sistemas.
               </span>
             </h1>
           </motion.div>
@@ -92,8 +97,7 @@ export function Hero() {
             className="text-muted-foreground max-w-2xl mb-10 leading-relaxed"
             style={{ fontSize: "clamp(1rem, 2vw, 1.2rem)" }}
           >
-            Desarrollo soluciones de software empresarial — desde microservicios cloud-native hasta agentes
-            de inteligencia artificial. Ingeniería de alta precisión para empresas que necesitan escalar.
+            {summary.content}
           </motion.p>
 
           {/* CTAs */}
@@ -104,7 +108,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-3 mb-16"
           >
             <a
-              href="#contact"
+              href="mailto:miguelangelmu2016@gmail.com"
               className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl transition-all duration-200 shadow-xl shadow-indigo-500/25 hover:shadow-indigo-500/40 font-semibold text-sm"
             >
               Agendar Consultoría Gratuita
@@ -140,7 +144,7 @@ export function Hero() {
           </motion.div>
 
           {/* Metrics */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -162,7 +166,7 @@ export function Hero() {
                 <div className="text-sm text-muted-foreground">{m.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 

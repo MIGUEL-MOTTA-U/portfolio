@@ -1,6 +1,7 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { Star, Quote } from "lucide-react";
+import { profileData } from "../data/profileData";
 
 const testimonials = [
   {
@@ -105,6 +106,10 @@ function TestimonialCard({ t, index }: { t: typeof testimonials[0]; index: numbe
 export function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { sections } = profileData;
+
+  // @ts-ignore
+  if (sections.testimonials?.visible === false) return null;
 
   return (
     <section className="relative py-32 bg-background overflow-hidden">
