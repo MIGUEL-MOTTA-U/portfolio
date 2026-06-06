@@ -44,7 +44,7 @@ const colorMap: Record<string, { icon: string; btn: string; border: string }> = 
   },
 };
 
-export function CTASection() {
+export function CTASection({show=false}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [name, setName] = useState("");
@@ -64,6 +64,7 @@ export function CTASection() {
       setMessage("");
     }, 1500);
   };
+  if (!show) return null;
 
   return (
     <section id="contact" className="relative py-32 bg-background overflow-hidden">
