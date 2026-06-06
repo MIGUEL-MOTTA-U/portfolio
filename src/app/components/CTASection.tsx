@@ -44,7 +44,7 @@ const colorMap: Record<string, { icon: string; btn: string; border: string }> = 
   },
 };
 
-export function CTASection({show=false}) {
+export function CTASection({showForms=false}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [name, setName] = useState("");
@@ -64,7 +64,6 @@ export function CTASection({show=false}) {
       setMessage("");
     }, 1500);
   };
-  if (!show) return null;
 
   return (
     <section id="contact" className="relative py-32 bg-background overflow-hidden">
@@ -153,7 +152,9 @@ export function CTASection({show=false}) {
         </motion.div>
 
         {/* Contact form */}
-        <motion.div
+        {
+          showForms && (
+            <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -244,6 +245,8 @@ export function CTASection({show=false}) {
             )}
           </div>
         </motion.div>
+          )
+        }
       </div>
     </section>
   );
