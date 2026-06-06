@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <style>
+    .terminal-icon { 
+      stroke: #030213; /* Color para modo claro (Indigo muy oscuro) */
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (prefers-color-scheme: dark) {
+      .terminal-icon { 
+        stroke: #6366f1; /* Color para modo oscuro (Indigo vibrante) */
+      }
+    }
+  </style>
+  <polyline points="4 17 10 11 4 5" class="terminal-icon" />
+  <line x1="12" y1="19" x2="20" y2="19" class="terminal-icon" />
+</svg>

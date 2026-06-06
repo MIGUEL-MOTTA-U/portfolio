@@ -16,7 +16,7 @@ export function EducationCertifications() {
   if (!showEducation && !showCerts && !showSoftSkills && !showLanguages) return null;
 
   return (
-    <section id="academic" className="relative py-32 bg-background/50">
+    <section id="academic" className="relative py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           

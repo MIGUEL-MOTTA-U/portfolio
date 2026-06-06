@@ -31,7 +31,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative rounded-2xl border border-border bg-card hover:border-foreground/20 transition-all duration-500 overflow-hidden"
+      className="group relative rounded-2xl border border-border bg-card hover:border-foreground/20 overflow-hidden"
     >
       {/* Gradient top bar */}
       <div className={`absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r ${gradient.replace('/20', '/60').replace('/10', '/30')}`} />
