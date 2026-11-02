@@ -4,26 +4,54 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/shared/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="theme-color" content="#060611" />
+
     <title>Motta Dev</title>
     <meta name="description" content="Portafolio profesional de Miguel Motta, Ingeniero de Sistemas especializado en arquitecturas de microservicios, cloud computing (AWS/Azure) e integración de Inteligencia Artificial." />
-    
+    <link rel="canonical" href="https://mottadev.vercel.app/" />
+
+    <!-- Fuentes: preconexión y hoja en paralelo (antes iban por @import dentro del CSS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
     <!-- SEO & Social Media -->
     <meta property="og:title" content="Miguel Motta | Ingeniero de Sistemas & Software Architect" />
     <meta property="og:description" content="Especialista en desarrollo backend escalable, soluciones cloud y agentes de IA." />
     <meta property="og:type" content="website" />
-    
+    <meta property="og:url" content="https://mottadev.vercel.app/" />
+    <meta property="og:site_name" content="Motta Dev" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Miguel Motta | Ingeniero de Sistemas & Software Architect" />
+    <meta name="twitter:description" content="Especialista en desarrollo backend escalable, soluciones cloud y agentes de IA." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Miguel Motta",
+        "jobTitle": "Ingeniero de Sistemas",
+        "url": "https://mottadev.vercel.app/",
+        "sameAs": [
+          "https://github.com/MIGUEL-MOTTA-U/",
+          "https://www.linkedin.com/in/miguelangelmotta-backendengineer/"
+        ],
+        "address": { "@type": "PostalAddress", "addressCountry": "CO" }
+      }
+    </script>
+
     <style>
-      html, body { 
-        height: 100%; 
-        margin: 0; 
+      html, body {
+        height: 100%;
+        margin: 0;
         background-color: #060611;
-      } 
+      }
       #root { height: 100%; }
     </style>
   </head>
 
   <body>
+    <noscript>Este portafolio necesita JavaScript. Contacto: github.com/MIGUEL-MOTTA-U</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

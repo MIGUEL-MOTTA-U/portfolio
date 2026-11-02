@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mottadev.vercel.app/sitemap.xml
