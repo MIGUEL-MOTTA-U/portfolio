@@ -53,6 +53,8 @@ export function CTASection({showForms=false}) {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
+  // OJO: este envío es una simulación (no manda nada). El formulario sigue oculto
+  // (showForms=false) hasta tener un backend; no activarlo antes.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);

@@ -15,6 +15,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <main>
       <Hero />
       <Experience />
       <Services />
@@ -25,6 +26,7 @@ export default function App() {
       <CloudDevOps />
       <Testimonials />
       <CTASection />
+      </main>
       <Footer />
     </div>
   );
