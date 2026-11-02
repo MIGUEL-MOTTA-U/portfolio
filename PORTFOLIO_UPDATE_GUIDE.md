@@ -16,10 +16,13 @@ All projects must be added to `src/app/data/profileData.ts` following this unive
   title: "Project Name",
   type: "Category (e.g., Backend / Cloud / AI)",
   stack: ["Tech1", "Tech2", "Tech3"],
-  repo: "URL to repository",
+  repo: "URL to repository (omit if the repo is private)",
   description: "High-level summary of the project (1-2 sentences).",
   metrics: "Quantifiable impact or key technical achievement.",
   visible: true,
+  // Optional, only for already-deployed sites. embeddable=true only if the site
+  // sends a frame-ancestors header that allows this portfolio's origin.
+  demo: { url: "https://...", embeddable: false },
   details: {
     problem: "The specific pain point the project solves.",
     solution: "How the problem was solved technically.",
@@ -39,7 +42,7 @@ All projects must be added to `src/app/data/profileData.ts` following this unive
 5. **Review**: 
     - Validate that the `visible` flag is set correctly.
     - Ensure the `repo` link is valid.
-6. **Verify**: Run the build process to ensure no TypeScript errors were introduced.
+6. **Verify**: Run `pnpm typecheck` and `pnpm build` to ensure no TypeScript errors were introduced.
 
 ## Content Rules
 
@@ -59,7 +62,7 @@ All projects must be added to `src/app/data/profileData.ts` following this unive
 - [ ] `details` object is fully populated.
 - [ ] All URLs are absolute and verified.
 - [ ] `profileData` version and date are updated.
-- [ ] Build passes without TypeScript errors.
+- [ ] `pnpm typecheck` and `pnpm build` pass without errors.
 - [ ] Responsive behavior is intact across breakpoints.
 
 ## AI Update Prompt

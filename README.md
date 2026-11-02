@@ -4,7 +4,8 @@ High-performance engineering portfolio showcasing expertise in Systems Engineeri
 
 ## 🚀 Tech Stack
 - **Frontend**: React 18, TypeScript, Vite 6
-- **Styling**: Tailwind CSS 4, shadcn/ui, Framer Motion
+- **Styling**: Tailwind CSS 4
+- **Motion / iconos**: `motion`, `lucide-react`; tema con `next-themes`
 - **Tooling**: pnpm
 
 ## 🛠 Local Development
@@ -16,7 +17,11 @@ High-performance engineering portfolio showcasing expertise in Systems Engineeri
    ```bash
    pnpm dev
    ```
-3. **Build for production**:
+3. **Check types** (modo estricto):
+   ```bash
+   pnpm typecheck
+   ```
+4. **Build for production**:
    ```bash
    pnpm build
    ```
@@ -24,8 +29,8 @@ High-performance engineering portfolio showcasing expertise in Systems Engineeri
 ## 📁 Project Structure
 - `src/app/data/profileData.ts`: Central source of truth for all portfolio content.
 - `src/app/components/`: Page sections and layout logic.
-- `src/app/components/ui/`: Reusable base UI components.
 - `src/styles/`: Global CSS and theme configurations.
+- `public/`: `robots.txt` y `sitemap.xml`. `vercel.json`: cabeceras de seguridad y caché de `/assets`.
 
 ## ⚙️ Maintenance
 Refer to `PORTFOLIO_UPDATE_GUIDE.md` for the protocol on adding new projects and updating professional experience.
