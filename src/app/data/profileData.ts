@@ -1,11 +1,29 @@
+export interface ProjectDetails {
+  problem: string;
+  solution: string;
+  architecture: string;
+  challenges: string;
+}
+
+/** Sitio ya desplegado que se puede abrir desde el portafolio. */
+export interface ProjectDemo {
+  /** URL pública del despliegue. */
+  url: string;
+  /** true solo si el sitio permite ser embebido en un iframe (frame-ancestors). */
+  embeddable: boolean;
+}
+
 export interface Project {
   title: string;
   type: string;
   stack: string[];
-  repo: string;
+  /** Repositorio público. Se omite si el repo es privado. */
+  repo?: string;
   description: string;
   metrics?: string;
   visible: boolean;
+  details?: ProjectDetails;
+  demo?: ProjectDemo;
 }
 
 export interface Experience {
@@ -24,8 +42,8 @@ export interface SkillGroup {
 }
 
 export const profileData = {
-  version: "1.0.3",
-  last_updated: "2026-06-05T16:30:00Z",
+  version: "1.1.0",
+  last_updated: "2026-11-02T23:30:00Z",
   personal_info: {
     name: "Miguel Motta",
     role: "Ingeniero de Sistemas | Fullstack Engineer & Cloud Architect",
@@ -130,8 +148,23 @@ export const profileData = {
           },
           metrics: "Arquitectura modular 100% desacoplada con sistema de logs y persistencia de estados.",
           visible: true
+        },
+        {
+          title: "Listo para aprender: landing de demostración",
+          type: "Frontend / Motion / Web Performance",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript", "GSAP", "Lenis", "Vercel"],
+          demo: { url: "https://8va.vercel.app/", embeddable: false },
+          description: "Landing de una sola página para una academia de guitarra de demostración. Es una pieza de portafolio: el contenido es ficticio y las imágenes, los videos y la melodía están generados con IA, como declara el propio sitio.",
+          details: {
+            problem: "Mostrar capacidad de entrega front-end con movimiento, video y temas claro y oscuro sin sacrificar la primera carga ni la accesibilidad.",
+            solution: "Sitio estático con Astro y Tailwind 4, sin backend. Hero con video, escena de scroll atada a video, cuerdas interactivas con sonido sintetizado y melodía propia generada por síntesis (Karplus-Strong).",
+            architecture: "Todo texto, URL y número vive en archivos JSON validados por esquemas, nunca en los componentes. Los scripts de movimiento (Lenis, GSAP) se difieren. Despliegue automático desde GitHub: main es producción y develop genera una vista previa protegida.",
+            challenges: "Mantener liviana la carga inicial con videos pesados, evitar saltos de layout durante el scroll y cuidar contraste y teclado con animaciones activas."
+          },
+          metrics: "Medido en local: 89,3 KB hasta la carga, 7,8 KB de JS inicial (gzip), LCP mediano de 1,58 s en 4G lenta simulada y CLS 0,0000 en 48 cargas.",
+          visible: false
         }
-      ] as (Project & { details: any })[]
+      ] as Project[]
     },
     education: {
       visible: true,
