@@ -48,14 +48,17 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             <h3 className="text-foreground font-bold text-lg leading-snug">{project.title}</h3>
           </div>
           <div className="flex items-center gap-2">
-            <a 
-              href={project.repo} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-secondary hover:bg-accent text-muted-foreground hover:text-foreground transition-all"
-            >
-              <ExternalLink className="w-4 h-4" />
-            </a>
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Ver el repositorio de ${project.title}`}
+                className="p-2 rounded-full bg-secondary hover:bg-accent text-muted-foreground hover:text-foreground transition-all"
+              >
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -108,6 +111,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
         <button
           onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
           className="mt-4 w-full py-2 flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground bg-secondary/30 hover:bg-secondary/60 rounded-xl transition-all font-bold uppercase tracking-widest"
         >
           {expanded ? "Ocultar Detalles" : "Ver más detalles"}
