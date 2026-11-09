@@ -2,6 +2,7 @@ import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
 import { ArrowRight, TrendingUp, Users, Zap, Shield, ExternalLink } from "lucide-react";
 import { profileData, Project } from "../data/profileData";
+import { LiveSites } from "./LiveSites";
 
 const tagColorMap: Record<string, string> = {
   violet: "text-violet-400 bg-violet-500/10 border-violet-500/20",
@@ -126,9 +127,11 @@ export function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const { sections } = profileData;
-  const projects = sections.projects.items.filter(p => p.visible);
+  const visibles = sections.projects.items.filter(p => p.visible);
+  const projects = visibles.filter(p => !p.demo);
+  const sitios = visibles.filter(p => p.demo);
 
-  if (!sections.projects.visible || projects.length === 0) return null;
+  if (!sections.projects.visible || (projects.length === 0 && sitios.length === 0)) return null;
 
   return (
     <section id="projects" className="relative py-32 bg-background">
@@ -146,7 +149,7 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-5">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-emerald-800 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-5">
             Portafolio de Proyectos
           </span>
           <h2
@@ -170,11 +173,15 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
-          ))}
-        </div>
+        {projects.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+            {projects.map((project, i) => (
+              <ProjectCard key={project.title} project={project} index={i} />
+            ))}
+          </div>
+        )}
+
+        <LiveSites sites={sitios} />
       </div>
     </section>
   );
