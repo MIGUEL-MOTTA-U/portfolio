@@ -5,12 +5,30 @@ export interface ProjectDetails {
   challenges: string;
 }
 
+/** Miniatura estática de un sitio desplegado (captura del sitio levantado en local). */
+export interface ProjectPreview {
+  /** Ruta pública de la miniatura AVIF (1280×800, ≤ 40 KB). */
+  avif: string;
+  /** Respaldo WebP de la misma miniatura (1280×800, ≤ 40 KB). */
+  webp: string;
+  /** Texto alternativo descriptivo de la miniatura. */
+  alt: string;
+}
+
 /** Sitio ya desplegado que se puede abrir desde el portafolio. */
 export interface ProjectDemo {
   /** URL pública del despliegue. */
   url: string;
   /** true solo si el sitio permite ser embebido en un iframe (frame-ancestors). */
   embeddable: boolean;
+  /** Una línea para la tarjeta «Sitio en vivo» (invitación al cliente; no afirma que exista el negocio). */
+  summary?: string;
+  /** Hasta 3 chips de la tarjeta; si falta, se usan las 3 primeras tecnologías de `stack`. */
+  chips?: string[];
+  /** Miniatura de la tarjeta. Sin ella la tarjeta muestra «Vista previa no disponible». */
+  preview?: ProjectPreview;
+  /** true si la miniatura no trae por sí sola la marca de «sitio de ejemplo»: la tarjeta la dibuja encima. */
+  exampleBadge?: boolean;
 }
 
 export interface Project {
@@ -153,7 +171,17 @@ export const profileData = {
           title: "Listo para aprender: landing de demostración",
           type: "Frontend / Motion / Web Performance",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript", "GSAP", "Lenis", "Vercel"],
-          demo: { url: "https://8va.vercel.app/", embeddable: false },
+          demo: {
+            url: "https://8va.vercel.app/",
+            embeddable: false,
+            summary: "Así puede verse el sitio de tu negocio: rápido, con video y animación.",
+            chips: ["Astro", "Tailwind CSS 4", "GSAP"],
+            preview: {
+              avif: "/previews/octava-1280x800.avif",
+              webp: "/previews/octava-1280x800.webp",
+              alt: "Portada de «Listo para aprender»: una guitarra eléctrica sobre fondo oscuro, el título «Listo para aprender» y los botones «Escríbeme» y «Ver el ejemplo»."
+            }
+          },
           description: "Landing de una sola página para una academia de guitarra de demostración. Es una pieza de portafolio: el contenido es ficticio y las imágenes, los videos y la melodía están generados con IA, como declara el propio sitio.",
           details: {
             problem: "Mostrar capacidad de entrega front-end con movimiento, video y temas claro y oscuro sin sacrificar la primera carga ni la accesibilidad.",
@@ -162,7 +190,43 @@ export const profileData = {
             challenges: "Mantener liviana la carga inicial con videos pesados, evitar saltos de layout durante el scroll y cuidar contraste y teclado con animaciones activas."
           },
           metrics: "Medido en local: 89,3 KB hasta la carga, 7,8 KB de JS inicial (gzip), LCP mediano de 1,58 s en 4G lenta simulada y CLS 0,0000 en 48 cargas.",
-          visible: false
+          visible: true
+        },
+        {
+          title: "Ascua: sitio de demostración para una pizzería",
+          type: "Sitio web / Gastronomía",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://ascua-demo.vercel.app",
+            embeddable: false,
+            summary: "Así puede verse el sitio de tu restaurante: carta, pedido de ejemplo y horario, rápido y claro.",
+            preview: {
+              avif: "/previews/ascua-1280x800.avif",
+              webp: "/previews/ascua-1280x800.webp",
+              alt: "Portada de «Ascua»: el titular «Pizza a la brasa, masa de dos días», una pizza sobre un plato de barro y el botón «Ver la carta», sobre fondo crema."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de una pizzería ficticia: carta, pedido de ejemplo y horario, con tema claro y oscuro. Marca, platos e imágenes son de ejemplo; las imágenes están generadas con IA.",
+          visible: true
+        },
+        {
+          title: "Vesper: sitio de demostración para una pizzería",
+          type: "Sitio web / Gastronomía",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://vesper-demo-kappa.vercel.app",
+            embeddable: false,
+            summary: "Una carta con notas de cata y pedido de ejemplo, en tema claro u oscuro, para un local que abre al caer la tarde.",
+            preview: {
+              avif: "/previews/vesper-1280x800.avif",
+              webp: "/previews/vesper-1280x800.webp",
+              alt: "Portada de «Vesper» en tema oscuro: el titular «La brasa es el ingrediente» sobre una pizza frente a un horno de leña, con los botones «Ver la carta» y «Hacer mi pedido»."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de una pizzería ficticia: carta con notas de cata, pedido de ejemplo y tema claro u oscuro. Marca, platos e imágenes son de ejemplo; las imágenes están generadas con IA.",
+          visible: true
         }
       ] as Project[]
     },

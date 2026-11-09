@@ -32,6 +32,27 @@ All projects must be added to `src/app/data/profileData.ts` following this unive
 }
 ```
 
+### Live sites ("Sitios en vivo")
+
+A project with a `demo` and `visible: true` is drawn as a card in the **Sitios en vivo** block (below the regular projects grid) and is **not** repeated in the main grid. Extra `demo` fields:
+
+```typescript
+demo: {
+  url: "https://...",            // public PRODUCTION domain, never a preview or per-deployment URL
+  embeddable: false,              // keep false (the quick-view modal is Phase 2)
+  summary: "One line for the card: an invitation to the client, never a claim that the business exists.",
+  chips: ["Astro", "Tailwind CSS 4", "GSAP"],   // up to 3; if omitted, the first 3 of `stack`
+  preview: {                      // static thumbnail, 1280x800, <= 40 KB each
+    avif: "/previews/<name>-1280x800.avif",
+    webp: "/previews/<name>-1280x800.webp",
+    alt: "Descriptive alternative text (what the screenshot shows)."
+  },
+  exampleBadge: true              // true when the thumbnail itself does not say "sitio de ejemplo"
+}
+```
+
+Rules: omit `repo` for private repositories; no `metrics` line on these cards; never invent figures. Make the thumbnail from the site running **locally** (1280x800 viewport, wait for the entrance animation), save it under `public/previews/` and convert it to AVIF and WebP (<= 40 KB).
+
 ## Update Workflow
 1. **Analyze**: Read `src/app/data/profileData.ts` to understand current project ordering and style.
 2. **Extract**: Parse the incoming project context into the Schema defined above.
