@@ -78,7 +78,7 @@ function SiteCard({ project, index }: { project: Project; index: number }) {
       <div className="relative flex flex-1 flex-col p-7">
         <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">{project.type}</span>
         <h3 className="text-lg font-bold leading-snug text-foreground">{project.title}</h3>
-        <p className="mt-3 text-base leading-relaxed text-muted-foreground">{demo.summary ?? project.description}</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{demo.summary ?? project.description}</p>
 
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
           {chips.map((tech) => (
@@ -93,7 +93,7 @@ function SiteCard({ project, index }: { project: Project; index: number }) {
             href={demo.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Abrir el sitio «${project.title}» (se abre en una pestaña nueva)`}
+            aria-label={`Abrir sitio: «${project.title}» (se abre en una pestaña nueva)`}
             className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-transform duration-100 hover:bg-indigo-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card motion-reduce:active:scale-100"
           >
             Abrir sitio
