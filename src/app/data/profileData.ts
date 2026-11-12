@@ -227,6 +227,60 @@ export const profileData = {
           },
           description: "Sitio de demostración de una pizzería ficticia: carta con notas de cata, pedido de ejemplo y tema claro u oscuro. Marca, platos e imágenes son de ejemplo; las imágenes están generadas con IA.",
           visible: true
+        },
+        {
+          title: "Halo: sitio de demostración para un salón de uñas y cabello",
+          type: "Sitio web / Bienestar y belleza",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://halo-salon-bogota.vercel.app",
+            embeddable: false,
+            summary: "Reserva paso a paso, catálogo filtrable y bono de regalo interactivo, en tema claro y oscuro, para un salón de belleza.",
+            preview: {
+              avif: "/previews/halo-1280x800.avif",
+              webp: "/previews/halo-1280x800.webp",
+              alt: "Portada de «Halo»: salón de uñas y cabello con fotografía editorial, botón de reserva y navegación en tema claro."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de un salón de uñas y cabello ficticio: catálogo filtrable, flujo de reserva en cuatro pasos y constructor de bono de regalo, con tema claro y oscuro.",
+          visible: true
+        },
+        {
+          title: "Gremio: sitio de demostración para una barbería",
+          type: "Sitio web / Bienestar y belleza",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://gremio-barberia.vercel.app",
+            embeddable: false,
+            summary: "Servicios, equipo, reserva de cita y bono de regalo personalizado, en tema claro y oscuro, para una barbería.",
+            preview: {
+              avif: "/previews/gremio-1280x800.avif",
+              webp: "/previews/gremio-1280x800.webp",
+              alt: "Portada de «Gremio»: barbería con tipografía condensada, fotografía editorial y acceso directo a reserva."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de una barbería ficticia: carta de servicios, reserva paso a paso y bono de regalo interactivo, con tema claro y oscuro.",
+          visible: true
+        },
+        {
+          title: "Nácar: sitio de demostración para un spa y estética",
+          type: "Sitio web / Bienestar y belleza",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://nacar-spa.vercel.app",
+            embeddable: false,
+            summary: "Carta de rituales, agenda paso a paso y bono de regalo con vista previa viva, en tema claro y oscuro, para un spa.",
+            preview: {
+              avif: "/previews/nacar-1280x800.avif",
+              webp: "/previews/nacar-1280x800.webp",
+              alt: "Portada de «Nácar»: spa y estética con estética minimalista, fotografía editorial y botón de reserva."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de un spa y estética ficticio: catálogo de servicios, reserva guiada y bono de regalo interactivo, con tema claro y oscuro.",
+          visible: true
         }
       ] as Project[]
     },
