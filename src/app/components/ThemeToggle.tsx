@@ -1,48 +1,28 @@
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
 
+/** Alternador de tema (40×40). El icono muestra el tema al que se cambia: luna en claro, sol en oscuro. */
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <div className="w-9 h-9" />;
+  if (!mounted) return <div className="size-10" aria-hidden="true" />;
+
+  const oscuro = resolvedTheme === "dark";
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-secondary text-foreground hover:bg-accent transition-colors border border-border hover:cursor-pointer"
-      aria-label={theme === "dark" ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
+      type="button"
+      onClick={() => setTheme(oscuro ? "light" : "dark")}
+      className="flex size-10 cursor-pointer items-center justify-center rounded-[10px] border border-border text-foreground transition-colors duration-[160ms] ease-out hover:bg-secondary"
+      aria-label={oscuro ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
     >
-      <motion.div
-        initial={false}
-        animate={{
-          rotate: theme === "dark" ? 0 : 90,
-          scale: theme === "dark" ? 1 : 0,
-          opacity: theme === "dark" ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className="absolute"
-      >
-        <Moon className="w-4 h-4" />
-      </motion.div>
-      <motion.div
-        initial={false}
-        animate={{
-          rotate: theme === "light" ? 0 : -90,
-          scale: theme === "light" ? 1 : 0,
-          opacity: theme === "light" ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
-        className="absolute"
-      >
-        <Sun className="w-4 h-4" />
-      </motion.div>
+      {oscuro ? <Sun className="size-[18px]" aria-hidden="true" /> : <Moon className="size-[18px]" aria-hidden="true" />}
     </button>
   );
 }

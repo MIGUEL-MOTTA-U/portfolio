@@ -1,92 +1,117 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Terminal } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
-import { profileData } from "../data/profileData";
+import { propuestaHref } from "../data/contacto";
+import { navItems } from "../data/navegacion";
 
-const navItemsRaw = [
-  { label: "Experiencia", href: "#experience", section: "experience" },
-  { label: "Servicios", href: "#services", section: "services" },
-  { label: "Proyectos", href: "#projects", section: "projects" },
-  { label: "Stack", href: "#stack", section: "technical_skills" },
-  { label: "Académico", href: "#academic", section: "education" },
-  { label: "IA", href: "#ai", section: "ai" },
-];
+const botonPrincipal =
+  "inline-flex items-center justify-center bg-primary font-semibold text-primary-foreground transition-[background-color,transform] duration-[160ms] ease-out hover:bg-accent-hover active:scale-[0.98] active:duration-100 motion-reduce:active:scale-100";
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { sections } = profileData;
+  const [activo, setActivo] = useState<string | null>(null);
+  const botonMenu = useRef<HTMLButtonElement>(null);
 
-  const navItems = navItemsRaw.filter((item) => {
-    if (item.section === "ai") return true; // Section without specific visibility in JSON yet
-    if (item.section === "services") return true; // Same
-    // @ts-ignore
-    return sections[item.section]?.visible !== false;
-  });
-
+  // Enlace de la sección activa: la última cuyo borde superior ya pasó el 40 % de la ventana.
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    // «contact» no tiene enlace en la barra: al llegar a Contacto no queda ninguno activo.
+    const els = [...navItems.map((item) => item.href.slice(1)), "contact"]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    let pendiente = false;
+    const calcular = () => {
+      pendiente = false;
+      const limite = window.innerHeight * 0.4;
+      let actual: string | null = null;
+      let tope = -Infinity;
+      // El orden del menú no es el de la página: gana la sección cuyo borde superior está más abajo sin pasar el límite.
+      for (const el of els) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= limite && top > tope) {
+          tope = top;
+          actual = el.id;
+        }
+      }
+      setActivo(actual === "contact" ? null : actual);
+    };
+    const alScroll = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(calcular);
+    };
+    calcular();
+    window.addEventListener("scroll", alScroll, { passive: true });
+    return () => window.removeEventListener("scroll", alScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Esc cierra el menú y devuelve el foco al botón.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const alTeclear = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        botonMenu.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", alTeclear);
+    return () => window.removeEventListener("keydown", alTeclear);
+  }, [mobileOpen]);
 
   return (
     <motion.nav
+      aria-label="Principal"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,shadow] duration-500 ${
-        scrolled
-          ? "bg-surface-alpha backdrop-blur-2xl border-b border-border shadow-2xl shadow-foreground/5"
-          : "bg-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl"
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-lg bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center group-hover:bg-indigo-600/30 transition-all">
-            <Terminal className="w-4 h-4 text-indigo-400" />
-          </div>
-          <span className="font-mono font-bold text-foreground tracking-tight">
-            <span className="text-indigo-400">{"<"}</span>
-            <span className="text-cyan-400">motta</span>
-            dev
-            <span className="text-indigo-400">{" />"}</span>
-          </span>
+      <div className="mx-auto flex h-16 w-full max-w-[1440px] items-center justify-between px-6 lg:h-[72px] lg:px-20">
+        <a href="#" aria-label="mottadev, inicio" className="rounded-md">
+          <Logo />
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className="hidden items-center gap-8 lg:flex">
+          {navItems.map((item) => {
+            const esActivo = activo === item.href.slice(1);
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                aria-current={esActivo ? "location" : undefined}
+                className={`relative text-[15px] font-medium transition-colors duration-200 ${
+                  esActivo
+                    ? "text-foreground after:absolute after:inset-x-0 after:-bottom-1.5 after:h-0.5 after:bg-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
-          <a
-            href="mailto:miguelangelmu2016@gmail.com"
-            className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-all duration-200 border border-indigo-500/50 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30"
-          >
-            Agenda Consulta
+          <a href={propuestaHref} className={`h-10 rounded-[10px] px-[18px] text-sm ${botonPrincipal}`}>
+            Pedir propuesta
           </a>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            ref={botonMenu}
+            type="button"
+            className="flex size-10 cursor-pointer items-center justify-center rounded-[10px] border border-border text-foreground transition-colors duration-[160ms] ease-out hover:bg-secondary"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? <X className="size-[18px]" aria-hidden="true" /> : <Menu className="size-[18px]" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -95,29 +120,32 @@ export function Navbar() {
         {mobileOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden bg-background/95 backdrop-blur-2xl border-b border-border"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="border-t border-border bg-background lg:hidden"
           >
-            <div className="px-6 py-5 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+            <div className="flex flex-col gap-6 px-6 pb-8 pt-2">
+              <div className="flex flex-col">
+                {navItems.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="flex h-14 items-center justify-between border-b border-border text-xl font-semibold text-foreground"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                    <ArrowRight className="size-[18px] text-muted-foreground" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
               <a
-                href="#contact"
-                className="px-4 py-2.5 text-sm font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-all"
+                href={propuestaHref}
+                className={`h-[52px] gap-2 rounded-xl px-6 text-base ${botonPrincipal}`}
                 onClick={() => setMobileOpen(false)}
               >
-                Agenda una Consulta
+                Pedir propuesta
               </a>
             </div>
           </motion.div>

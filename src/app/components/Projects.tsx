@@ -1,187 +1,164 @@
 import { motion, useInView } from "motion/react";
 import { useRef, useState } from "react";
-import { ArrowRight, TrendingUp, Users, Zap, Shield, ExternalLink } from "lucide-react";
-import { profileData, Project } from "../data/profileData";
+import { ChevronDown } from "lucide-react";
+import { profileData } from "../data/profileData";
+import type { Project } from "../data/profileData";
 import { LiveSites } from "./LiveSites";
+import { Etiqueta } from "./Etiqueta";
+import { VerMas, etiquetaVerMas } from "./VerMas";
 
-const tagColorMap: Record<string, string> = {
-  violet: "text-violet-400 bg-violet-500/10 border-violet-500/20",
-  emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-  amber: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-  cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
-  blue: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-};
+/** En móvil (menos de 768 px) se ven los 2 primeros proyectos y el resto queda tras «Ver más» (UI-SPEC D14). */
+const VISIBLES_MOVIL = 2;
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({ project, index, oculto }: { project: Project; index: number; oculto: boolean }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   const [expanded, setExpanded] = useState(false);
-
-  // Inferred properties for visual variety based on index
-  const gradients = [
-    "from-violet-600/20 to-indigo-600/10",
-    "from-emerald-600/20 to-cyan-600/10",
-    "from-amber-600/20 to-orange-600/10",
-    "from-cyan-600/20 to-blue-600/10",
-  ];
-  const gradient = gradients[index % gradients.length];
+  const chips = (project.chips ?? project.stack).slice(0, 4);
 
   return (
-    <motion.div
+    <motion.article
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative rounded-2xl border border-border bg-card hover:border-foreground/20 overflow-hidden"
+      className={`group relative flex flex-col rounded-2xl border border-border bg-card p-6 hover:border-foreground/20 md:p-8 ${
+        oculto ? "max-md:hidden" : ""
+      }`}
     >
-      {/* Gradient top bar */}
-      <div className={`absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r ${gradient.replace('/20', '/60').replace('/10', '/30')}`} />
+      <div className="flex flex-col gap-3">
+        <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">{project.type}</span>
+        <h3 className="text-xl font-bold leading-[1.3] text-foreground">{project.title}</h3>
+        <p className="text-sm leading-[1.625] text-muted-foreground">{project.summary ?? project.description}</p>
+        <ul className="flex flex-wrap gap-2" aria-label="Tecnologías">
+          {chips.map((tech) => (
+            <li key={tech} className="rounded-lg border border-border bg-secondary px-3 py-1 font-mono text-[10px] font-bold text-muted-foreground">
+              {tech}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      {/* Background glow */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-
-      <div className="relative p-7">
-        <div className="flex items-start justify-between mb-4">
+      {expanded && project.details && (
+        <motion.div
+          id={`detalles-${index}`}
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.4, ease: "circOut" }}
+          className="mt-6 space-y-5 overflow-hidden border-t border-border pt-6"
+        >
           <div>
-            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2 block">
-              {project.type}
-            </span>
-            <h3 className="text-foreground font-bold text-lg leading-snug">{project.title}</h3>
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">El Problema</div>
+            <p className="text-xs leading-relaxed text-muted-foreground">{project.details.problem}</p>
           </div>
-          <div className="flex items-center gap-2">
-            {project.repo && (
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Ver el repositorio de ${project.title}`}
-                className="p-2 rounded-full bg-secondary hover:bg-accent text-muted-foreground hover:text-foreground transition-all"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
+          <div>
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">La Solución</div>
+            <p className="text-xs leading-relaxed text-muted-foreground">{project.details.solution}</p>
           </div>
-        </div>
+          <div>
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">Arquitectura</div>
+            <p className="rounded-lg border border-border bg-secondary p-3 font-mono text-xs leading-relaxed text-muted-foreground">
+              {project.details.architecture}
+            </p>
+          </div>
+          <div>
+            <div className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-primary">Desafíos Técnicos</div>
+            <p className="text-xs leading-relaxed text-muted-foreground">{project.details.challenges}</p>
+          </div>
+          <div className="pt-2">
+            <div className="mb-3 text-[10px] font-bold uppercase tracking-widest text-primary">Stack Tecnológico</div>
+            <ul className="flex flex-wrap gap-2">
+              {project.stack.map((tech) => (
+                <li key={tech} className="rounded-lg border border-border bg-secondary px-3 py-1 font-mono text-[10px] font-bold text-muted-foreground">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      )}
 
-        <div className="space-y-4 mb-6">
-          <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
-          {project.metrics && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-indigo-500/5 border border-indigo-500/10">
-              <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-xs font-medium text-indigo-400/90">{project.metrics}</span>
-            </div>
-          )}
-          
-          {expanded && project.details && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ duration: 0.4, ease: "circOut" }}
-              className="mt-6 pt-6 border-t border-border space-y-5"
-            >
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-1.5">El Problema</div>
-                <p className="text-xs text-muted-foreground leading-relaxed">{project.details.problem}</p>
-              </div>
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-1.5">La Solución</div>
-                <p className="text-xs text-muted-foreground leading-relaxed">{project.details.solution}</p>
-              </div>
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1.5">Arquitectura</div>
-                <p className="text-xs font-mono text-muted-foreground leading-relaxed bg-secondary/30 p-2.5 rounded-lg border border-border/50">{project.details.architecture}</p>
-              </div>
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1.5">Desafíos Técnicos</div>
-                <p className="text-xs text-muted-foreground leading-relaxed">{project.details.challenges}</p>
-              </div>
-              
-              <div className="pt-2">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-3">Stack Tecnológico</div>
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech: string) => (
-                    <span key={tech} className="px-3 py-1 text-[10px] font-bold font-mono text-muted-foreground bg-secondary/50 border border-border rounded-lg hover:border-indigo-500/30 transition-all">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </div>
-
+      <div className="mt-auto pt-6">
         <button
+          type="button"
           onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
-          className="mt-4 w-full py-2 flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-foreground bg-secondary/30 hover:bg-secondary/60 rounded-xl transition-all font-bold uppercase tracking-widest"
+          aria-controls={expanded ? `detalles-${index}` : undefined}
+          className="flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-secondary text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors duration-[160ms] ease-out hover:bg-accent hover:text-accent-foreground md:h-11"
         >
-          {expanded ? "Ocultar Detalles" : "Ver más detalles"}
-          <ArrowRight className={`w-3.5 h-3.5 transition-transform ${expanded ? "-rotate-90" : "rotate-90"}`} />
+          {expanded ? "Ocultar detalles" : "Ver más detalles"}
+          <ChevronDown
+            className={`size-4 transition-transform duration-200 motion-reduce:transition-none ${expanded ? "rotate-180" : ""}`}
+            aria-hidden="true"
+          />
         </button>
       </div>
-    </motion.div>
+    </motion.article>
+  );
+}
+
+function ProyectosTecnicos({ projects }: { projects: Project[] }) {
+  const [expandido, setExpandido] = useState(false);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  if (projects.length === 0) return null;
+
+  const ocultos = Math.max(0, projects.length - VISIBLES_MOVIL);
+
+  const alternar = () => {
+    const siguiente = !expandido;
+    setExpandido(siguiente);
+    if (!siguiente) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById("proyectos-tecnicos");
+        if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
+      });
+    }
+  };
+
+  return (
+    <div className="mt-20 lg:mt-28">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="mb-8 flex justify-center lg:mb-12"
+      >
+        <Etiqueta id="proyectos-tecnicos">Proyectos técnicos</Etiqueta>
+      </motion.div>
+
+      <div id="lista-proyectos" role="list" aria-labelledby="proyectos-tecnicos" className="grid grid-cols-1 items-stretch gap-x-6 gap-y-8 md:grid-cols-2 lg:gap-y-12">
+        {projects.map((project, i) => (
+          <ProjectCard key={project.title} project={project} index={i} oculto={i >= VISIBLES_MOVIL && !expandido} />
+        ))}
+      </div>
+
+      {ocultos > 0 && (
+        <VerMas
+          expandido={expandido}
+          onToggle={alternar}
+          etiqueta={etiquetaVerMas(ocultos, "proyecto", "proyectos")}
+          controla="lista-proyectos"
+        />
+      )}
+    </div>
   );
 }
 
 export function Projects() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   const { sections } = profileData;
-  const visibles = sections.projects.items.filter(p => p.visible);
-  const projects = visibles.filter(p => !p.demo);
-  const sitios = visibles.filter(p => p.demo);
+  const visibles = sections.projects.items.filter((p) => p.visible);
+  const projects = visibles.filter((p) => !p.demo);
+  const sitios = visibles.filter((p) => p.demo);
 
   if (!sections.projects.visible || (projects.length === 0 && sitios.length === 0)) return null;
 
   return (
-    <section id="projects" className="relative py-32 bg-background">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute top-1/3 left-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
-          style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 70%)", filter: "blur(80px)" }}
-        />
-      </div>
-      <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-emerald-800 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-5">
-            Portafolio de Proyectos
-          </span>
-          <h2
-            className="text-foreground font-bold mb-4"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
-          >
-            Arquitecturas de{" "}
-            <span
-              style={{
-                background: "linear-gradient(120deg, #22d3ee, #a78bfa)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Alto Impacto
-            </span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-base">
-            Soluciones reales diseñadas para escalar, con enfoque en backend, cloud e integración de IA.
-          </p>
-        </motion.div>
-
-        {projects.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
-            ))}
-          </div>
-        )}
-
+    <section id="projects" className="relative bg-background pb-20 pt-6 lg:pb-28 lg:pt-10">
+      <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-20">
         <LiveSites sites={sitios} />
+        <ProyectosTecnicos projects={projects} />
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 * {
@@ -31,70 +31,90 @@ body {
 
 :root {
   --font-size: 16px;
-  --background: #e5e5e1;
-  --foreground: #020617;
+  --background: #f3f5f2;
+  --foreground: #0b1210;
   --card: #ffffff;
-  --card-foreground: #020617;
+  --card-foreground: #0b1210;
   --popover: #ffffff;
-  --popover-foreground: #020617;
-  --primary: #4f46e5;
+  --popover-foreground: #0b1210;
+  --primary: #047857;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --accent: #e2e8f0;
-  --accent-foreground: #0f172a;
+  --secondary: #edf1ee;
+  --secondary-foreground: #0b1210;
+  --muted: #edf1ee;
+  --muted-foreground: #4b5b54;
+  --accent: #d1fae5;
+  --accent-foreground: #065f46;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
+  --border: #d6ddd8;
+  --input: #d6ddd8;
   --input-background: #ffffff;
-  --switch-background: #cbd5e1;
+  --switch-background: #d6ddd8;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #6366f1;
+  --ring: #047857;
   --chart-1: #e11d48;
   --chart-2: #f59e0b;
   --chart-3: #3b82f6;
   --chart-4: #10b981;
   --chart-5: #8b5cf6;
   --radius: 0.625rem;
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #4f46e5;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0b1210;
+  --sidebar-primary: #047857;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #6366f1;
-  
+  --sidebar-accent: #edf1ee;
+  --sidebar-accent-foreground: #0b1210;
+  --sidebar-border: #d6ddd8;
+  --sidebar-ring: #047857;
+
   /* Custom variables for the portfolio */
-  --card-hover-bg: rgba(79, 70, 229, 0.05);
-  --card-hover-border: rgba(79, 70, 229, 0.2);
-  --surface-alpha: rgba(255, 255, 255, 0.7);
+  --card-hover-bg: rgba(4, 120, 87, 0.05);
+  --card-hover-border: rgba(4, 120, 87, 0.2);
+  --surface-alpha: rgba(243, 245, 242, 0.85);
+
+  /* Marca mottadev (CR-002): ver design/UI-SPEC.md §2 */
+  --accent-hover: #065f46;
+  --accent-soft: #d1fae5;
+  --accent-soft-text: #065f46;
+  --cursor: #10b981;
+  --panel: #0b1210;
+  --feature: #0b1210;
+  --panel-edge: #0b1210;
+  --panel-ink: #f4f7f5;
+  --panel-muted: #9fb2a8;
+  --panel-line: #2a3f34;
+  --panel-accent: #34d399;
+  --panel-accent-hover: #a7f3d0;
+  --logo-box: #047857;
+  --logo-glyph: #ffffff;
+  --logo-text: #0b1210;
+  --grid-line: rgba(11, 18, 16, 0.06);
+  --orb-a: #10b98138;
+  --orb-b: #04785722;
 }
 
 .dark {
-  --background: #060611;
-  --foreground: #f8fafc;
-  --card: rgba(255, 255, 255, 0.03);
-  --card-foreground: #f8fafc;
-  --popover: #0d0d1a;
-  --popover-foreground: #f8fafc;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --secondary: #1e1e2e;
-  --secondary-foreground: #f8fafc;
-  --muted: #1e1e2e;
-  --muted-foreground: #94a3b8;
-  --accent: #2a2a3d;
-  --accent-foreground: #f8fafc;
+  --background: #0b1210;
+  --foreground: #f4f7f5;
+  --card: #101a16;
+  --card-foreground: #f4f7f5;
+  --popover: #101a16;
+  --popover-foreground: #f4f7f5;
+  --primary: #34d399;
+  --primary-foreground: #0b1210;
+  --secondary: #16221c;
+  --secondary-foreground: #f4f7f5;
+  --muted: #16221c;
+  --muted-foreground: #9fb2a8;
+  --accent: #0b3d2e;
+  --accent-foreground: #a7f3d0;
   --destructive: #7f1d1d;
   --destructive-foreground: #f87171;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #4f46e5;
+  --border: #2a3f34;
+  --input: #2a3f34;
+  --ring: #34d399;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --chart-1: #2563eb;
@@ -102,19 +122,33 @@ body {
   --chart-3: #f59e0b;
   --chart-4: #8b5cf6;
   --chart-5: #f43f5e;
-  --sidebar: #0a0a14;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #4f46e5;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e1e2e;
-  --sidebar-accent-foreground: #f8fafc;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #4f46e5;
+  --sidebar: #0b1210;
+  --sidebar-foreground: #f4f7f5;
+  --sidebar-primary: #34d399;
+  --sidebar-primary-foreground: #0b1210;
+  --sidebar-accent: #16221c;
+  --sidebar-accent-foreground: #f4f7f5;
+  --sidebar-border: #2a3f34;
+  --sidebar-ring: #34d399;
 
   /* Custom variables for the portfolio */
-  --card-hover-bg: rgba(99, 102, 241, 0.03);
-  --card-hover-border: rgba(99, 102, 241, 0.2);
-  --surface-alpha: rgba(6, 6, 17, 0.8);
+  --card-hover-bg: rgba(52, 211, 153, 0.04);
+  --card-hover-border: rgba(52, 211, 153, 0.2);
+  --surface-alpha: rgba(11, 18, 16, 0.85);
+
+  /* Marca mottadev (CR-002) */
+  --accent-hover: #a7f3d0;
+  --accent-soft: #0b3d2e;
+  --accent-soft-text: #a7f3d0;
+  --panel: #0f1f18;
+  --feature: #0b3d2e;
+  --panel-edge: #2a3f34;
+  --logo-box: #ffffff;
+  --logo-glyph: #047857;
+  --logo-text: #ffffff;
+  --grid-line: rgba(255, 255, 255, 0.05);
+  --orb-a: #10b98140;
+  --orb-b: #10b98122;
 }
 
 @theme inline {
@@ -161,6 +195,22 @@ body {
   --color-card-hover-bg: var(--card-hover-bg);
   --color-card-hover-border: var(--card-hover-border);
   --color-surface-alpha: var(--surface-alpha);
+
+  /* Marca mottadev (CR-002) */
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-text: var(--accent-soft-text);
+  --color-cursor: var(--cursor);
+  --color-panel: var(--panel);
+  --color-feature: var(--feature);
+  --color-panel-edge: var(--panel-edge);
+  --color-panel-ink: var(--panel-ink);
+  --color-panel-muted: var(--panel-muted);
+  --color-panel-line: var(--panel-line);
+  --color-panel-accent: var(--panel-accent);
+  --color-panel-accent-hover: var(--panel-accent-hover);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer base {
@@ -179,6 +229,20 @@ body {
 
   html {
     font-size: var(--font-size);
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Foco visible de 3 px (UI-SPEC §7) */
+  :where(a, button, [role="button"], input, select, textarea, summary):focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
   }
 
   h1 {
@@ -223,3 +287,19 @@ body {
     line-height: 1.5;
   }
 }
+
+/*
+ * Contraste en claro de las secciones sin rediseño (CR-002 §3: «hay que revisar su contraste con la paleta nueva»).
+ * Los tonos 300 a 500 de Tailwind fallan AA sobre fondo claro (1,5:1 a 3,1:1). En claro se usa el tono 700 u 800 (800 donde el texto va sobre un fondo teñido).
+ * En oscuro no cambia nada. Sin capa: gana a las utilidades de Tailwind.
+ */
+:root:not(.dark) :is(.text-violet-300, .text-violet-400) { color: #6d28d9; }
+:root:not(.dark) :is(.text-indigo-300, .text-indigo-400) { color: #4338ca; }
+:root:not(.dark) :is(.text-emerald-300, .text-emerald-400, .text-emerald-500) { color: #065f46; }
+:root:not(.dark) :is(.text-cyan-300, .text-cyan-400) { color: #155e75; }
+:root:not(.dark) :is(.text-amber-300, .text-amber-400) { color: #b45309; }
+:root:not(.dark) :is(.text-blue-300, .text-blue-400) { color: #1d4ed8; }
+:root:not(.dark) :is(.text-rose-300, .text-rose-400) { color: #be123c; }
+
+/* Texto atenuado fijo (slate-500 a 700) de las secciones sin rediseño: sobre el fondo oscuro nuevo mide 1,8:1 a 2,5:1. */
+:root.dark :is(.text-slate-500, .text-slate-600, .text-slate-700) { color: var(--muted-foreground); }

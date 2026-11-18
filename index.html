@@ -12,7 +12,7 @@
     <!-- Fuentes: preconexión y hoja en paralelo (antes iban por @import dentro del CSS) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
 
     <!-- SEO & Social Media -->
     <meta property="og:title" content="Miguel Motta | Ingeniero de Sistemas & Software Architect" />
@@ -33,7 +33,7 @@
         "url": "https://mottadev.com/",
         "sameAs": [
           "https://github.com/MIGUEL-MOTTA-U/",
-          "https://www.linkedin.com/in/miguelangelmotta-backendengineer/"
+          "https://www.linkedin.com/in/mottadev/"
         ],
         "address": { "@type": "PostalAddress", "addressCountry": "CO" }
       }
@@ -43,7 +43,10 @@
       html, body {
         height: 100%;
         margin: 0;
-        background-color: #060611;
+        background-color: #0b1210;
+      }
+      @media (prefers-color-scheme: light) {
+        html, body { background-color: #f3f5f2; }
       }
       #root { height: 100%; }
     </style>

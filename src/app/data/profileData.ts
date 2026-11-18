@@ -39,6 +39,10 @@ export interface Project {
   repo?: string;
   description: string;
   metrics?: string;
+  /** Una frase corta para la tarjeta de «Proyectos técnicos». Si falta, se usa `description`. */
+  summary?: string;
+  /** Hasta 4 etiquetas de la tarjeta técnica. Si faltan, se usan las 4 primeras de `stack`. */
+  chips?: string[];
   visible: boolean;
   details?: ProjectDetails;
   demo?: ProjectDemo;
@@ -59,18 +63,82 @@ export interface SkillGroup {
   skills: string[];
 }
 
+const EMAIL = "miguel@mottadev.com";
+const GITHUB = "https://github.com/MIGUEL-MOTTA-U/";
+const LINKEDIN = "https://www.linkedin.com/in/mottadev/";
+
+export type IconoServicio = "globe" | "cloud" | "bot" | "compass";
+
+export interface CategoriaServicio {
+  icon: IconoServicio;
+  title: string;
+  description: string;
+  items: string[];
+  /** La tarjeta destacada (oscura) del bloque «bento». */
+  featured?: boolean;
+}
+
+export interface CanalContacto {
+  kind: "mail" | "github" | "linkedin";
+  /** Texto visible: el formato ya dice qué es, sin etiqueta. */
+  label: string;
+  href: string;
+}
+
 export const profileData = {
-  version: "1.1.0",
-  last_updated: "2026-11-02T23:30:00Z",
+  version: "1.2.0",
+  last_updated: "2026-11-18T22:45:00Z",
   personal_info: {
     name: "Miguel Motta",
-    role: "Ingeniero de Sistemas | Fullstack Engineer & Cloud Architect",
+    role: "Ingeniero de Sistemas | Arquitecto de soluciones",
     location: "Colombia",
-    email: "miguelangelmu2016@gmail.com",
+    email: EMAIL,
     links: {
-      github: "https://github.com/MIGUEL-MOTTA-U/",
-      linkedin: "https://www.linkedin.com/in/miguelangelmotta-backendengineer/"
+      github: GITHUB,
+      linkedin: LINKEDIN
     }
+  },
+  hero: {
+    cargo_es: ["Ingeniero de Sistemas", "Arquitecto de soluciones"],
+    cargo_en: ["Systems Engineer", "Solutions Architect"],
+    frase:
+      "Creo sitios y aplicaciones web rápidos, claros y fáciles de mantener. Cuéntame qué necesita tu negocio y te envío una propuesta."
+  },
+  services: [
+    {
+      icon: "globe",
+      title: "Sitios y aplicaciones web",
+      description: "Desde una página sencilla hasta una aplicación completa.",
+      items: ["Desarrollo Full Stack", "Backend", "APIs empresariales"],
+      featured: true
+    },
+    {
+      icon: "cloud",
+      title: "Cloud y DevOps",
+      description: "Infraestructura segura que escala y se despliega sola.",
+      items: ["Arquitectura Cloud", "DevOps y CI/CD", "Ciberseguridad"]
+    },
+    {
+      icon: "bot",
+      title: "IA y automatización",
+      description: "Asistentes y procesos que ahorran horas de trabajo.",
+      items: ["Inteligencia Artificial", "Automatización empresarial"]
+    },
+    {
+      icon: "compass",
+      title: "Consultoría y modernización",
+      description: "Revisión técnica y renovación de sistemas antiguos.",
+      items: ["Consultoría técnica", "Modernización tecnológica"]
+    }
+  ] as CategoriaServicio[],
+  contact: {
+    /** Asunto del correo que abre «Pedir propuesta». */
+    subject: "Propuesta de proyecto",
+    channels: [
+      { kind: "mail", label: EMAIL, href: `mailto:${EMAIL}` },
+      { kind: "github", label: "MIGUEL-MOTTA-U", href: GITHUB },
+      { kind: "linkedin", label: "mottadev", href: LINKEDIN }
+    ] as CanalContacto[]
   },
   sections: {
     professional_summary: {
@@ -109,6 +177,8 @@ export const profileData = {
       items: [
         {
           title: "AI Enterprise Cloud Platform",
+          summary: "Ecosistema de microservicios escalable diseñado para la tutoría personalizada mediante IA.",
+          chips: ["Node.js", "TypeScript", "AWS ECS", "Gemini API"],
           type: "Backend / Cloud / AI",
           stack: ["Node.js", "TypeScript", "AWS ECS", "AWS ECR", "AWS NLB", "API Gateway", "RDS", "AWS Lambda", "Gemini API", "MongoDB", "Redis"],
           repo: "https://github.com/MIGUEL-MOTTA-U/",
@@ -124,6 +194,8 @@ export const profileData = {
         },
         {
           title: "Multiplayer Engine: Bad Ice Cream",
+          summary: "Remake de alto rendimiento del clásico «Bad Ice Cream» con sincronización multijugador en tiempo real.",
+          chips: ["Fastify", "TypeScript", "WebSocket", "Redis"],
           type: "Full Stack / Real-time",
           stack: ["Fastify", "TypeScript", "WebSocket", "Redis", "PostgreSQL", "React"],
           repo: "https://github.com/MIGUEL-MOTTA-U/The-Matrix-Back",
@@ -139,6 +211,8 @@ export const profileData = {
         },
         {
           title: "Enterprise Library Notification System",
+          summary: "Módulo de automatización de alertas y gestión de multas para sistemas bibliotecarios de gran escala.",
+          chips: ["Spring Boot", "Java", "Spring Cloud", "PostgreSQL"],
           type: "Backend / Microservices",
           stack: ["Spring Boot", "Java", "Spring Cloud", "PostgreSQL", "Spring Security"],
           repo: "https://github.com/thesrcielos/spammers",
@@ -154,6 +228,8 @@ export const profileData = {
         },
         {
           title: "Strategic Game Engine: QuoriPOOB",
+          summary: "Implementación digital del juego Quoridor que muestra principios avanzados de programación orientada a objetos.",
+          chips: ["Java", "Java Swing", "Diseño orientado a objetos"],
           type: "Desktop / OOP Architecture",
           stack: ["Java", "Java Swing", "Object-Oriented Design"],
           repo: "https://github.com/MIGUEL-MOTTA-U/POOB_DANIEL_MIGUEL",

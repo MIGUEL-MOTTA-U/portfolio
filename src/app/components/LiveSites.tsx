@@ -2,8 +2,13 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
 import { ExternalLink, ImageOff } from "lucide-react";
 import type { Project } from "../data/profileData";
+import { Etiqueta } from "./Etiqueta";
+import { VerMas, etiquetaVerMas } from "./VerMas";
 
 type EstadoMiniatura = "cargando" | "listo" | "error";
+
+/** En móvil (menos de 768 px) se ven las 3 primeras tarjetas y el resto queda tras «Ver más» (UI-SPEC D14). */
+const VISIBLES_MOVIL = 3;
 
 /** Miniatura 16:10 con esqueleto mientras carga y mensaje si falla (A2). */
 function Miniatura({ project }: { project: Project }) {
@@ -48,7 +53,7 @@ function Miniatura({ project }: { project: Project }) {
       )}
 
       {project.demo?.exampleBadge && estado !== "error" && (
-        <span className="pointer-events-none absolute right-3 top-3 rounded-full border border-white/25 bg-black/70 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-white">
+        <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-[#0b1210cc] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#f4f7f5]">
           Sitio de ejemplo
         </span>
       )}
@@ -71,18 +76,18 @@ function SiteCard({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
       className="group relative flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-foreground/20"
     >
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-600/20 to-indigo-600/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 to-primary/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" />
 
       <Miniatura project={project} />
 
       <div className="relative flex flex-1 flex-col p-7">
-        <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-muted-foreground">{project.type}</span>
-        <h3 className="text-lg font-bold leading-snug text-foreground">{project.title}</h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{demo.summary ?? project.description}</p>
+        <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">{project.type}</span>
+        <h3 className="text-lg font-bold leading-[1.3] text-foreground">{project.title}</h3>
+        <p className="mt-3 text-sm leading-[1.625] text-muted-foreground">{demo.summary ?? project.description}</p>
 
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías">
           {chips.map((tech) => (
-            <li key={tech} className="rounded-lg border border-border bg-secondary/50 px-3 py-1 font-mono text-[10px] font-bold text-muted-foreground">
+            <li key={tech} className="rounded-lg border border-border bg-secondary px-3 py-1 font-mono text-[10px] font-bold text-muted-foreground">
               {tech}
             </li>
           ))}
@@ -94,7 +99,7 @@ function SiteCard({ project, index }: { project: Project; index: number }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Abrir sitio: «${project.title}» (se abre en una pestaña nueva)`}
-            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition-transform duration-100 hover:bg-indigo-500 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card motion-reduce:active:scale-100"
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-[background-color,transform] duration-[160ms] ease-out hover:bg-accent-hover active:scale-[0.98] active:duration-100 motion-reduce:active:scale-100 md:h-11 md:w-auto"
           >
             Abrir sitio
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -107,9 +112,24 @@ function SiteCard({ project, index }: { project: Project; index: number }) {
 
 /** Bloque «Sitios en vivo» (A1): demos desplegadas que se pueden abrir. No se dibuja si no hay ninguna. */
 export function LiveSites({ sites }: { sites: Project[] }) {
+  const [expandido, setExpandido] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   if (sites.length === 0) return null;
+
+  const ocultos = Math.max(0, sites.length - VISIBLES_MOVIL);
+
+  const alternar = () => {
+    const siguiente = !expandido;
+    setExpandido(siguiente);
+    // Al contraer, vuelve al inicio del bloque si la etiqueta quedó fuera de vista.
+    if (!siguiente) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById("sitios-en-vivo");
+        if (el && el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: "start" });
+      });
+    }
+  };
 
   const rejilla =
     sites.length >= 3
@@ -119,30 +139,33 @@ export function LiveSites({ sites }: { sites: Project[] }) {
         : "mx-auto max-w-xl grid-cols-1";
 
   return (
-    <div className="mt-20">
+    <div>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="mb-10 text-center"
+        className="mb-8 flex justify-center lg:mb-12"
       >
-        <span
-          id="sitios-en-vivo"
-          className="mb-5 inline-block rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-800 dark:text-emerald-400"
-        >
-          Sitios en vivo
-        </span>
-        <p className="mx-auto max-w-2xl text-base text-muted-foreground">Demos publicadas que puedes abrir y probar tú mismo.</p>
+        <Etiqueta id="sitios-en-vivo">Sitios en vivo</Etiqueta>
       </motion.div>
 
-      <ul aria-labelledby="sitios-en-vivo" className={`grid items-stretch gap-6 ${rejilla}`}>
+      <ul id="lista-sitios" aria-labelledby="sitios-en-vivo" className={`grid items-stretch gap-x-6 gap-y-8 lg:gap-y-12 ${rejilla}`}>
         {sites.map((site, i) => (
-          <li key={site.title} className="flex">
+          <li key={site.title} className={`flex ${i >= VISIBLES_MOVIL && !expandido ? "max-md:hidden" : ""}`}>
             <SiteCard project={site} index={i} />
           </li>
         ))}
       </ul>
+
+      {ocultos > 0 && (
+        <VerMas
+          expandido={expandido}
+          onToggle={alternar}
+          etiqueta={etiquetaVerMas(ocultos, "sitio", "sitios")}
+          controla="lista-sitios"
+        />
+      )}
     </div>
   );
 }

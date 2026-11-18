@@ -6,7 +6,7 @@ import App from "./app/App.tsx";
 import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <ThemeProvider attribute="class" defaultTheme="dark">
+  <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
     <MotionConfig reducedMotion="user">
       <App />
     </MotionConfig>
