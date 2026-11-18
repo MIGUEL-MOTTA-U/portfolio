@@ -57,7 +57,7 @@ export function Experience() {
               {/* Dot on the timeline */}
               <div className="absolute left-[-5px] top-0 w-2.5 h-2.5 rounded-full bg-indigo-500 border border-background shadow-[0_0_10px_rgba(99,102,241,0.5)]" />
 
-              <div className="bg-card border border-border rounded-2xl p-8 hover:border-foreground/10 transition-all">
+              <div className="bg-card border border-border rounded-2xl p-8 hover:border-foreground/10 transition-colors">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                   <div>
                     <h3 className="text-xl font-bold text-foreground mb-1">{item.role}</h3>

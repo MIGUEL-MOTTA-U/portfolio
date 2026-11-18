@@ -11,14 +11,14 @@ function CategoryCard({ cat, index }: { cat: { domain: string; skills: string[] 
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="p-5 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-all"
+      className="p-5 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-colors"
     >
       <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">{cat.domain}</div>
       <div className="flex flex-wrap gap-2">
         {cat.skills.map((skill) => (
           <span
             key={skill}
-            className="px-2.5 py-1 text-xs font-mono text-muted-foreground bg-card border border-border rounded-lg hover:text-foreground hover:border-indigo-500/30 transition-all cursor-default"
+            className="px-2.5 py-1 text-xs font-mono text-muted-foreground bg-card border border-border rounded-lg hover:text-foreground hover:border-indigo-500/30 transition-colors cursor-default"
           >
             {skill}
           </span>

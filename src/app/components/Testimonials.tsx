@@ -79,7 +79,7 @@ function TestimonialCard({ t, index }: { t: typeof testimonials[0]; index: numbe
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="relative p-6 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-all"
+      className="relative p-6 rounded-2xl bg-card border border-border hover:border-foreground/10 transition-colors"
     >
       <Quote className="w-5 h-5 text-indigo-500/40 mb-4" />
       <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{t.text}"</p>

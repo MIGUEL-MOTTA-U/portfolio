@@ -51,7 +51,7 @@ function FeatureCard({ feat, index }: { feat: typeof features[0]; index: number 
       initial={{ opacity: 0, x: 20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-5 rounded-2xl bg-card border border-border hover:border-cyan-500/20 transition-all"
+      className="p-5 rounded-2xl bg-card border border-border hover:border-cyan-500/20 transition-colors"
     >
       <h3 className="text-foreground font-semibold mb-2 text-sm">{feat.title}</h3>
       <p className="text-muted-foreground text-sm leading-relaxed">{feat.description}</p>
@@ -155,7 +155,7 @@ export function CloudDevOps() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
-                    className="p-3 rounded-xl bg-card border border-border hover:border-cyan-500/20 hover:bg-cyan-500/[0.03] transition-all text-center cursor-default"
+                    className="p-3 rounded-xl bg-card border border-border hover:border-cyan-500/20 hover:bg-cyan-500/[0.03] transition-colors text-center cursor-default"
                   >
                     <div className="text-lg mb-1.5">{svc.icon}</div>
                     <div className="text-xs text-muted-foreground font-medium leading-tight">{svc.name}</div>

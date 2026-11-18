@@ -54,9 +54,9 @@ function CapabilityItem({ cap, index }: { cap: typeof capabilities[0]; index: nu
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="flex gap-4 p-4 rounded-xl bg-card border border-border hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-all group"
+      className="flex gap-4 p-4 rounded-xl bg-card border border-border hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-colors group"
     >
-      <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 group-hover:bg-violet-500/20 transition-all">
+      <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 group-hover:bg-violet-500/20 transition-colors">
         <Icon className="w-4 h-4 text-violet-400" />
       </div>
       <div>
@@ -167,7 +167,7 @@ export function AISection() {
                 {useCases.map((uc, i) => (
                   <div
                     key={i}
-                    className="p-3.5 rounded-xl bg-card border border-border hover:border-violet-500/20 transition-all"
+                    className="p-3.5 rounded-xl bg-card border border-border hover:border-violet-500/20 transition-colors"
                   >
                     <div className="text-xs text-muted-foreground mb-1 font-medium">{uc.label}</div>
                     <div className="text-xs font-mono font-semibold text-violet-400">{uc.value}</div>
