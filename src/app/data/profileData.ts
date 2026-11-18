@@ -172,7 +172,7 @@ export const profileData = {
           type: "Frontend / Motion / Web Performance",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript", "GSAP", "Lenis", "Vercel"],
           demo: {
-            url: "https://8va.vercel.app/",
+            url: "https://8va.mottadev.com/",
             embeddable: false,
             summary: "Así puede verse el sitio de tu negocio: rápido, con video y animación.",
             chips: ["Astro", "Tailwind CSS 4", "GSAP"],
@@ -197,7 +197,7 @@ export const profileData = {
           type: "Sitio web / Gastronomía",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
           demo: {
-            url: "https://ascua-demo.vercel.app",
+            url: "https://ascua-demo.mottadev.com",
             embeddable: false,
             summary: "Así puede verse el sitio de tu restaurante: carta, pedido de ejemplo y horario, rápido y claro.",
             preview: {
@@ -215,7 +215,7 @@ export const profileData = {
           type: "Sitio web / Gastronomía",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
           demo: {
-            url: "https://vesper-demo-kappa.vercel.app",
+            url: "https://vesper-demo.mottadev.com",
             embeddable: false,
             summary: "Una carta con notas de cata y pedido de ejemplo, en tema claro u oscuro, para un local que abre al caer la tarde.",
             preview: {
@@ -233,7 +233,7 @@ export const profileData = {
           type: "Sitio web / Bienestar y belleza",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
           demo: {
-            url: "https://halo-salon-bogota.vercel.app",
+            url: "https://halo-salon-bogota.mottadev.com",
             embeddable: false,
             summary: "Reserva paso a paso, catálogo filtrable y bono de regalo interactivo, en tema claro y oscuro, para un salón de belleza.",
             preview: {
@@ -251,7 +251,7 @@ export const profileData = {
           type: "Sitio web / Bienestar y belleza",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
           demo: {
-            url: "https://gremio-barberia.vercel.app",
+            url: "https://gremio-barberia.mottadev.com",
             embeddable: false,
             summary: "Servicios, equipo, reserva de cita y bono de regalo personalizado, en tema claro y oscuro, para una barbería.",
             preview: {
@@ -269,7 +269,7 @@ export const profileData = {
           type: "Sitio web / Bienestar y belleza",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
           demo: {
-            url: "https://nacar-spa.vercel.app",
+            url: "https://nacar-spa.mottadev.com",
             embeddable: false,
             summary: "Carta de rituales, agenda paso a paso y bono de regalo con vista previa viva, en tema claro y oscuro, para un spa.",
             preview: {
