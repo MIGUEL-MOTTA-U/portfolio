@@ -357,6 +357,63 @@ export const profileData = {
           },
           description: "Sitio de demostración de un spa y estética ficticio: catálogo de servicios, reserva guiada y bono de regalo interactivo, con tema claro y oscuro.",
           visible: true
+        },
+        {
+          title: "Marfil: sitio de demostración para un consultorio odontológico",
+          type: "Sitio web / Salud",
+          stack: ["Astro", "Tailwind CSS 4", "Three.js", "TypeScript"],
+          demo: {
+            url: "https://marfil-dentist.mottadev.com",
+            embeddable: false,
+            summary: "Un diente en 3D, un consultorio que se recorre arrastrando y pedido de cita, en tema claro y oscuro, para una clínica dental.",
+            chips: ["Astro", "Tailwind CSS 4", "Three.js"],
+            preview: {
+              avif: "/previews/marfil-1280x800.avif",
+              webp: "/previews/marfil-1280x800.webp",
+              alt: "Portada de «Marfil»: el titular «Una sonrisa» y un diente en 3D dentro de un círculo sobre fondo crema, con el botón «Pedir cita»."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de un consultorio odontológico ficticio: portada con un diente en 3D, escenas del consultorio y del mapa que se arrastran, servicios, opiniones y contacto, con tema claro y oscuro. Marca, textos e imágenes son de ejemplo.",
+          visible: true
+        },
+        {
+          title: "Tersa A: sitio de demostración para una dermatología",
+          type: "Sitio web / Salud",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://tersa-dermatologia.mottadev.com",
+            embeddable: false,
+            summary: "La palabra «piel» se acerca con el scroll hasta abrir el contenido y pedir cita, en tema claro y oscuro, para una dermatología.",
+            chips: ["Astro", "Tailwind CSS 4", "TypeScript"],
+            preview: {
+              avif: "/previews/tersa-a-1280x800.avif",
+              webp: "/previews/tersa-a-1280x800.webp",
+              alt: "Portada de «Tersa A»: la palabra «piel» en tamaño gigante junto al texto «Mire su piel de cerca» y el botón «Solicitar cita»."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de una dermatología ficticia de Bogotá: una palabra enorme que se acerca con el scroll hasta abrir el contenido, con guía de la primera cita y del consultorio, en tema claro y oscuro. Marca y textos son de ejemplo.",
+          visible: true
+        },
+        {
+          title: "Tersa B: sitio de demostración para una dermatología",
+          type: "Sitio web / Salud",
+          stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
+          demo: {
+            url: "https://tersa-piel.mottadev.com",
+            embeddable: false,
+            summary: "Un quiz de piel de tres preguntas con tarjetas de palabras que sugiere un motivo de consulta, en tema claro y oscuro, para una dermatología.",
+            chips: ["Astro", "Tailwind CSS 4", "TypeScript"],
+            preview: {
+              avif: "/previews/tersa-b-1280x800.avif",
+              webp: "/previews/tersa-b-1280x800.webp",
+              alt: "Portada de «Tersa B»: la pregunta «¿Qué le preocupa de su piel?» y seis tarjetas con motivos de consulta como acné, manchas y lunares."
+            },
+            exampleBadge: true
+          },
+          description: "Sitio de demostración de una dermatología ficticia de Bogotá: un quiz de dos o tres preguntas con tarjetas de solo palabras y un resultado que sugiere un motivo de consulta, en tema claro y oscuro. Marca y textos son de ejemplo.",
+          visible: true
         }
       ] as Project[]
     },
