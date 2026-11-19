@@ -16,8 +16,8 @@ export function Hero() {
   if (!summary.visible) return null;
 
   return (
-    <section className="relative flex min-h-[656px] items-start overflow-hidden bg-background pb-10 pt-[120px] lg:min-h-[832px] lg:items-center lg:pb-0 lg:pt-[72px]">
-      {/* Fondo estático: cuadrícula, velo, orbes y ruido (UI-SPEC §4.2). Las animaciones quedan para después. */}
+    <section className="relative flex min-h-[656px] items-start overflow-hidden pb-10 pt-[120px] lg:min-h-[832px] lg:items-center lg:pb-0 lg:pt-[72px]">
+      {/* Fondo estático: cuadrícula con máscara, orbes y ruido (UI-SPEC §4.2). Las animaciones quedan para después. */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div
           className="absolute inset-0"
@@ -25,11 +25,9 @@ export function Hero() {
             backgroundImage:
               "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
             backgroundSize: "80px 80px",
+            maskImage: "radial-gradient(ellipse at 72% 40%, #000 0%, transparent 90%)",
+            WebkitMaskImage: "radial-gradient(ellipse at 72% 40%, #000 0%, transparent 90%)",
           }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse at 72% 40%, transparent 0%, var(--background) 90%)" }}
         />
         <div
           className="absolute left-[28%] top-[-56px] size-[420px] rounded-full lg:left-[52.7%] lg:top-[-8px] lg:size-[760px]"
@@ -91,7 +89,7 @@ export function Hero() {
             {hayDemos && (
               <a
                 href="#sitios-en-vivo"
-                className={`${botonBase} border-[1.5px] border-foreground text-foreground hover:bg-accent hover:text-accent-foreground`}
+                className={`${botonBase} border-[1.5px] border-foreground bg-background text-foreground hover:bg-accent hover:text-accent-foreground`}
               >
                 Ver sitios en vivo
                 <ArrowDown className="size-[18px]" aria-hidden="true" />

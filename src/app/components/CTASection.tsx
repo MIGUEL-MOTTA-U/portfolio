@@ -17,7 +17,7 @@ export function CTASection() {
   const { channels } = profileData.contact;
 
   return (
-    <section id="contact" className="relative bg-background pb-20 lg:pb-28">
+    <section id="contact" className="relative pb-20 lg:pb-28">
       <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-20">
         <motion.div
           ref={ref}

@@ -43,10 +43,11 @@
       html, body {
         height: 100%;
         margin: 0;
-        background-color: #0b1210;
       }
+      /* Solo html lleva fondo. body es transparente para no tapar la capa de puntos (CR-003). */
+      html { background-color: #0b1210; }
       @media (prefers-color-scheme: light) {
-        html, body { background-color: #f3f5f2; }
+        html { background-color: #f3f5f2; }
       }
       #root { height: 100%; }
     </style>

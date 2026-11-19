@@ -1,9 +1,16 @@
 @custom-variant dark (&:is(.dark *));
 
+/* Fondo de la página. Vive en html y no en body: la capa de puntos (OndaFondo, z-index negativo) se pinta sobre este fondo y bajo todo el contenido.
+   `:root` (más específico que el `html` en línea de index.html) hace que gane este fondo sin depender del orden de las hojas. */
+:root {
+  background-color: var(--background);
+  transition: background-color 0.2s ease-in-out;
+}
+
 /* Site-wide font */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: var(--background);
+  background-color: transparent;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -218,8 +225,9 @@ body {
     @apply border-border outline-ring/50;
   }
 
+  /* El fondo de la página vive en `:root` (arriba). `body` debe seguir transparente: si no, taparía la capa de puntos. */
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
 
   /**

@@ -12,7 +12,7 @@ export function Experience() {
   if (!experience.visible || experience.items.length === 0) return null;
 
   return (
-    <section id="experience" className="relative py-32 bg-background">
+    <section id="experience" className="relative py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           ref={ref}

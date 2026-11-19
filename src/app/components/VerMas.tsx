@@ -26,7 +26,7 @@ export function VerMas({
       onClick={onToggle}
       aria-expanded={expandido}
       aria-controls={controla}
-      className="mt-8 flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-[1.5px] border-foreground text-base font-semibold text-foreground transition-[background-color,color,transform] duration-[160ms] ease-out hover:bg-accent hover:text-accent-foreground active:scale-[0.98] active:duration-100 motion-reduce:active:scale-100 md:hidden"
+      className="mt-8 flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl border-[1.5px] border-foreground bg-background text-base font-semibold text-foreground transition-[background-color,color,transform] duration-[160ms] ease-out hover:bg-accent hover:text-accent-foreground active:scale-[0.98] active:duration-100 motion-reduce:active:scale-100 md:hidden"
     >
       {expandido ? "Ver menos" : etiqueta}
       {expandido ? <ChevronUp className="size-[18px]" aria-hidden="true" /> : <ChevronDown className="size-[18px]" aria-hidden="true" />}

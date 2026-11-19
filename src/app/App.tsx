@@ -10,6 +10,7 @@ import { CloudDevOps } from "./components/CloudDevOps";
 import { Testimonials } from "./components/Testimonials";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
+import { OndaFondo } from "./components/OndaFondo";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
       <CTASection />
       </main>
       <Footer />
+      <OndaFondo />
     </div>
   );
 }

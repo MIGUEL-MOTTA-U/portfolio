@@ -73,7 +73,7 @@ export function TechStack() {
   if (!skills.visible) return null;
 
   return (
-    <section id="stack" className="relative py-32 bg-background">
+    <section id="stack" className="relative py-32">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full opacity-10"
@@ -89,7 +89,7 @@ export function TechStack() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-5">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-[color-mix(in_oklab,var(--color-cyan-500)_10%,var(--background))] border border-cyan-500/20 rounded-full mb-5">
             Especialidades Técnicas
           </span>
           <h2

@@ -155,7 +155,7 @@ export function Projects() {
   if (!sections.projects.visible || (projects.length === 0 && sitios.length === 0)) return null;
 
   return (
-    <section id="projects" className="relative bg-background pb-20 pt-6 lg:pb-28 lg:pt-10">
+    <section id="projects" className="relative pb-20 pt-6 lg:pb-28 lg:pt-10">
       <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-20">
         <LiveSites sites={sitios} />
         <ProyectosTecnicos projects={projects} />

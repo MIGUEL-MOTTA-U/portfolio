@@ -16,7 +16,7 @@ export function EducationCertifications() {
   if (!showEducation && !showCerts && !showSoftSkills && !showLanguages) return null;
 
   return (
-    <section id="academic" className="relative py-32 bg-background">
+    <section id="academic" className="relative py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
@@ -28,7 +28,7 @@ export function EducationCertifications() {
               ref={ref}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+                <div className="p-2 rounded-lg bg-[color-mix(in_oklab,var(--color-indigo-500)_10%,var(--background))] text-indigo-400">
                   <GraduationCap className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Educación</h3>
@@ -57,7 +57,7 @@ export function EducationCertifications() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-violet-500/10 text-violet-400">
+                <div className="p-2 rounded-lg bg-[color-mix(in_oklab,var(--color-violet-500)_10%,var(--background))] text-violet-400">
                   <Brain className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Soft Skills</h3>
@@ -84,7 +84,7 @@ export function EducationCertifications() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+                <div className="p-2 rounded-lg bg-[color-mix(in_oklab,var(--color-cyan-500)_10%,var(--background))] text-cyan-400">
                   <Award className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Certificaciones</h3>
@@ -110,7 +110,7 @@ export function EducationCertifications() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="p-2 rounded-lg bg-[color-mix(in_oklab,var(--color-emerald-500)_10%,var(--background))] text-emerald-400">
                   <Languages className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground">Idiomas</h3>

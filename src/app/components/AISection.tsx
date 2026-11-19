@@ -54,7 +54,7 @@ function CapabilityItem({ cap, index }: { cap: typeof capabilities[0]; index: nu
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.07 }}
-      className="flex gap-4 p-4 rounded-xl bg-card border border-border hover:border-violet-500/20 hover:bg-violet-500/[0.03] transition-colors group"
+      className="flex gap-4 p-4 rounded-xl bg-card border border-border hover:border-violet-500/20 hover:bg-[color-mix(in_oklab,var(--color-violet-500)_3%,var(--background))] transition-colors group"
     >
       <div className="w-9 h-9 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center shrink-0 group-hover:bg-violet-500/20 transition-colors">
         <Icon className="w-4 h-4 text-violet-400" />
@@ -72,7 +72,7 @@ export function AISection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="ai" className="relative py-32 bg-background overflow-hidden">
+    <section id="ai" className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full opacity-[0.08]"
@@ -92,7 +92,7 @@ export function AISection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-violet-400 bg-violet-500/10 border border-violet-500/20 rounded-full mb-5">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-violet-400 bg-[color-mix(in_oklab,var(--color-violet-500)_10%,var(--background))] border border-violet-500/20 rounded-full mb-5">
             Inteligencia Artificial
           </span>
           <h2

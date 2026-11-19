@@ -58,7 +58,7 @@ export function Services() {
   const categorias = profileData.services;
 
   return (
-    <section id="services" className="relative bg-background py-[72px] lg:py-28">
+    <section id="services" className="relative py-[72px] lg:py-28">
       <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-20">
         <motion.div
           ref={ref}

@@ -64,7 +64,7 @@ export function CloudDevOps() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-32 bg-background overflow-hidden">
+    <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
@@ -80,7 +80,7 @@ export function CloudDevOps() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-5">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest uppercase text-cyan-400 bg-[color-mix(in_oklab,var(--color-cyan-500)_10%,var(--background))] border border-cyan-500/20 rounded-full mb-5">
             Cloud & DevOps
           </span>
           <h2
@@ -155,7 +155,7 @@ export function CloudDevOps() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.3, delay: 0.35 + i * 0.05 }}
-                    className="p-3 rounded-xl bg-card border border-border hover:border-cyan-500/20 hover:bg-cyan-500/[0.03] transition-colors text-center cursor-default"
+                    className="p-3 rounded-xl bg-card border border-border hover:border-cyan-500/20 hover:bg-[color-mix(in_oklab,var(--color-cyan-500)_3%,var(--background))] transition-colors text-center cursor-default"
                   >
                     <div className="text-lg mb-1.5">{svc.icon}</div>
                     <div className="text-xs text-muted-foreground font-medium leading-tight">{svc.name}</div>
@@ -176,7 +176,7 @@ export function CloudDevOps() {
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="p-5 rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.04]"
+              className="p-5 rounded-2xl border border-cyan-500/20 bg-[color-mix(in_oklab,var(--color-cyan-500)_4%,var(--background))]"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-semibold text-muted-foreground">System Uptime</span>
