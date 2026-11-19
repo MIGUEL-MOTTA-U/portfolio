@@ -359,25 +359,6 @@ export const profileData = {
           visible: true
         },
         {
-          title: "Marfil: sitio de demostración para un consultorio odontológico",
-          type: "Sitio web / Salud",
-          stack: ["Astro", "Tailwind CSS 4", "Three.js", "TypeScript"],
-          demo: {
-            url: "https://marfil-dentist.mottadev.com",
-            embeddable: false,
-            summary: "Un diente en 3D, un consultorio que se recorre arrastrando y pedido de cita, en tema claro y oscuro, para una clínica dental.",
-            chips: ["Astro", "Tailwind CSS 4", "Three.js"],
-            preview: {
-              avif: "/previews/marfil-1280x800.avif",
-              webp: "/previews/marfil-1280x800.webp",
-              alt: "Portada de «Marfil»: el titular «Una sonrisa» y un diente en 3D dentro de un círculo sobre fondo crema, con el botón «Pedir cita»."
-            },
-            exampleBadge: true
-          },
-          description: "Sitio de demostración de un consultorio odontológico ficticio: portada con un diente en 3D, escenas del consultorio y del mapa que se arrastran, servicios, opiniones y contacto, con tema claro y oscuro. Marca, textos e imágenes son de ejemplo.",
-          visible: true
-        },
-        {
           title: "Tersa A: sitio de demostración para una dermatología",
           type: "Sitio web / Salud",
           stack: ["Astro", "Tailwind CSS 4", "TypeScript"],
