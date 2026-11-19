@@ -423,7 +423,6 @@ export const profileData = {
         {
           degree: "Ingeniero de Sistemas",
           institution: "Escuela Colombiana de Ingeniería Julio Garavito",
-          period: "2024",
           status: "Graduado"
         }
       ]

@@ -36,7 +36,6 @@ export function EducationCertifications() {
               <div className="space-y-4">
                 {sections.education.items.map((edu, i) => (
                   <div key={i} className="p-6 rounded-2xl bg-card border border-border">
-                    <div className="text-sm text-indigo-400 font-semibold mb-1">{edu.period}</div>
                     <h4 className="text-lg font-bold text-foreground mb-1">{edu.degree}</h4>
                     <p className="text-muted-foreground text-sm">{edu.institution}</p>
                     {edu.status && (
